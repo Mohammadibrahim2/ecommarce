@@ -1,0 +1,16 @@
+/* 
+.card{
+    box-shadow: 0;
+}
+.card:hover{
+    box-shadow: 5px 5px;
+} */
+.card-box{
+    position: relative;
+}
+.upper{
+    position: absolute;
+
+    right: 0px;
+
+}
