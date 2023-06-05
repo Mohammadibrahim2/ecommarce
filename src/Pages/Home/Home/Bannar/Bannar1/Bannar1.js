@@ -6,7 +6,7 @@ import bannar3 from "../../../../../assetes/a-b-4.jpg"
 const Bannar1=()=>{
     return(
         <div>
-            <div className="grid grid-cols-3 gap-4 ">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 ">
                 <img src={bannar1}  className="h-full"></img>
                 <img src={bannar2}  className="h-full"></img>
                 <img src={bannar3} className="h-full"></img>

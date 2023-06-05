@@ -1,6 +1,6 @@
 import React from "react";
-import "./Product.css"
-const FeaturedProducts=()=>{
+import "../FeaturedProducts/Product.css"
+const TopBrandProducts=()=>{
 
     const items=[
         {
@@ -116,7 +116,7 @@ const FeaturedProducts=()=>{
     ]
     return(
         <div className="h-auto">
-            <h1 className=" text-black text-center font-semibold  text-2xl py-6">Featured Products</h1>
+            <h1 className=" text-black text-center font-semibold  text-2xl pt-0 pb-5">Top Brand Products</h1>
             <div className="grid grid-cols-6 gap-2 py-4">
                 {
                     items.map(item=><div class="card card-box  bg-white hover:shadow-2xl ">
@@ -142,4 +142,4 @@ const FeaturedProducts=()=>{
         </div>
     )
 }
-export default FeaturedProducts
+export default TopBrandProducts
