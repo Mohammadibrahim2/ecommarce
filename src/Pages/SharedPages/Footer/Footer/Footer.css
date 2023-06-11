@@ -1,0 +1,7 @@
+.social-icons{
+    filter: grayscale(160%);
+
+}
+.social-icons:hover{
+    filter: grayscale(0%);
+}

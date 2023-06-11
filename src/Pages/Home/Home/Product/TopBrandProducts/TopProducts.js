@@ -117,22 +117,22 @@ const TopBrandProducts=()=>{
     return(
         <div className="h-auto">
             <h1 className=" text-black text-center font-semibold  text-2xl pt-0 pb-5">Top Brand Products</h1>
-            <div className="grid grid-cols-6 gap-2 py-4">
+            <div className="grid lg:grid-cols-6 grid-cols-2 gap-2 py-4">
                 {
                     items.map(item=><div class="card card-box  bg-white hover:shadow-2xl ">
-                        <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{item.discount} % off</h2>
+                        <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{item.discount} % OFF</h2>
                     <figure class="px-10 pt-10">
                       <img src={item.img} alt="Shoes" class="rounded-xl" />
                     </figure>
-                    <div class="card-body items-center text-center text-black">
-                      <h2 class="card-title text-sm ">{item.productName}</h2>
-                      <div className="flex flex-row justify-between">
+                    <div class="py-7 px-2 items-center text-center text-black">
+                      <h2 class=" text-sm font-semibold ">{item.productName}</h2>
+                      <div className="flex flex-row justify-around py-3">
                         <span>{item.newPrice}tk</span>
                         <del className="ml-2">{item.discount}tk</del>
                       </div>
-                      <div class=" flex flex-row-reverse justify-around font-semibold w-full" style={{fontSize:"12px"}}>
-                        <button className="px-2 py-2  border border-orange-700 text-orange-500 rounded-md">Add to cart</button>
-                        <button className="px-2 py-2 bg-orange-600 text-white border rounded-md ">Buy Now</button>
+                      <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
+                        <button className="px-3  border border-orange-700 text-orange-500 rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}}>Add to cart</button>
+                        <button className="px-2 bg-orange-600 text-white border rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}}>Buy Now</button>
                       </div>
                     </div>
                   </div>)

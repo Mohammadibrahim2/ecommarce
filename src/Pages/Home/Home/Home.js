@@ -5,17 +5,21 @@ import Header from "./Header/Header";
 import FeaturedProducts from "./Product/FeaturedProducts/Product";
 import TopBrandProducts from "./Product/TopBrandProducts/TopProducts";
 import ShopByBrands from "./ShopByBrands/ShopByBrands";
+import FeatruedCategories from "./FeaturedCategory/Categories/FeaturedCategories";
+import Blog from "../../../Blog/Blog";
 
 const Home=()=>{
     return(
         <div className="text-oranger-500">
             <Header></Header>
+            <FeatruedCategories/>
           
             <FeaturedProducts></FeaturedProducts>
             <Bannar2></Bannar2>
             <TopBrandProducts></TopBrandProducts>
             <Bannar1></Bannar1>
             <ShopByBrands></ShopByBrands>
+            <Blog></Blog>
         </div>
     )
 }

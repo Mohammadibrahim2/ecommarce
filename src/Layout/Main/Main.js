@@ -3,18 +3,20 @@ import { Outlet } from "react-router-dom";
 import Footer from "../../Pages/SharedPages/Footer/Footer/Footer";
 import Navbar1 from "../../Pages/SharedPages/Navbar/Navbar/Navbar1";
 import SubNav from "../../Pages/SharedPages/Navbar/Subnav/SubNav";
+import ResponsiveNav from "../../Pages/SharedPages/Navbar/Navbar/ResponsiveNav/ResponsiveNav";
 
-const Main=()=>{
+const Main = () => {
 
-    return(
-        <div>
+    return (
+        <div className="bg-white">
             <Navbar1></Navbar1>
             <SubNav></SubNav>
-            <div  className="px-6">
+            <div className="lg:px-8 px-3 ">
 
-            <Outlet ></Outlet>
+                <Outlet ></Outlet>
             </div>
-       <Footer></Footer>
+            <Footer></Footer>
+            <ResponsiveNav></ResponsiveNav>
 
         </div>
     )
