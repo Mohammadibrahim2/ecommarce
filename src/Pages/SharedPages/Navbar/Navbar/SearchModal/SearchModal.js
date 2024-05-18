@@ -1,22 +1,82 @@
-import React from "react";
-import {BsSearch} from 'react-icons/bs'
-const SearchModal=()=>{
-    return(
-        <div className=" bg-black relative lg:hidden block  ">
 
+import React from 'react';
+import { Modal } from 'antd';
+import { useState } from 'react';
+import {BsSearch} from 'react-icons/bs'
+import { Button,  Form, Input } from 'antd';
+
+const SearchModal= ({handelSearch,setValues,values}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return (
+    <div>
      
- <button className=" bg-transparent text-xl" onClick={()=>window.my_modal_3.showModal()}><BsSearch/></button>
-<dialog id="my_modal_3" className="modal ">
-  <form method="dialog" className="modal-box bg-white flex flex-row justify-between items-center">
-    {/* <button htmlFor="my-modal-3" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button> */}
-  
+      <BsSearch  type="primary" className='text-2xl text-orange-500 lg:hidden block' onClick={showModal}/>
    
-                <input type="text" className="bg-white text-black pr-30 pl-2 py-2 rounded-md w-[95%] mr-2" placeholder="Search"></input>
-                <button className=" z-10 text-xl text-red-600"><BsSearch/></button>
-            </form>
-  
-</dialog>
-</div>
-    )
-}
-export default SearchModal
+      <Modal  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
+       okButtonProps={{
+        disabled: true,
+      }}
+      cancelButtonProps={{
+        disabled: true,
+      }}>
+     <Form
+    name="basic"
+    labelCol={{
+      span: 8,
+    }}
+    wrapperCol={{
+      span: 16,
+    }}
+    style={{
+      maxWidth: 600,
+    }}
+    initialValues={{
+      remember: true,
+    }}
+   
+    autoComplete="off"
+  >
+    <Form.Item
+      label="Username"
+      name="username"
+      rules={[
+        {
+          required: true,
+          message: 'search',
+        },
+      ]}
+    >
+      <Input />
+    </Form.Item>
+
+    
+
+   
+    <Form.Item
+      wrapperCol={{
+        offset: 8,
+        span: 16,
+      }}
+    >
+      <Button type="primary" htmlType="submit" 
+      style={{color:"orange"}}>
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
+           
+      </Modal>
+    </div>
+  );
+};
+export default SearchModal;
+//

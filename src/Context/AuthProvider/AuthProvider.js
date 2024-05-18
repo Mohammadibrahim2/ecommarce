@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState } from "react";
+// import { useQuery } from "react-query";
 // import { getAuth, signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword, 
 //     onAuthStateChanged, signOut , updateProfile } from "firebase/auth";
 // import app from "../../../firebase/firebase.config";
@@ -12,47 +13,38 @@ import React, {createContext, useEffect, useState } from "react";
 export const AuthContext=createContext()
 
 const AuthProvider=({children})=>{
-    // const[itemsCount,setcountItems]=useState(0)
-    // console.log(itemsCount)
-    // const [user,setUser]=useState({})
-    // const[loading,setLoading]=useState(true)
+
+    const [openModal,setOpenModal]=useState(true)
+    const [user,setUser]=useState({})
+    const[loading,setLoading]=useState(true)
     const [toggle,setToggle]=useState(true)
+    const [sub,setSub]=useState([])
+    console.log(sub?.subcategory)
+   
+    const [searchResult,setSearchResult]=useState([])
+   
   
 
-//    const signin=(email,password)=>{
-//     setLoading(true)
-//     return createUserWithEmailAndPassword(auth,email,password)
-//    }
 
-//     const login=(email,password)=>{
-//         setLoading(true)
-//         return signInWithEmailAndPassword(auth, email, password)
-//     }
-//     const GooglessigninProvider=(Googleprovider)=>{
-//         setLoading(true)
-           
-//         return signInWithPopup(auth,Googleprovider)
-//     }
-//     const logout=()=>{
-//         setLoading(true)
-//         return signOut(auth)
-//     }
-//     const updateUser = (userInfo) =>{
-//         return updateProfile(auth.currentUser, userInfo);
-//     }
-//     useEffect(()=>{
-//         const unsubscribe=onAuthStateChanged(auth,(currentuser)=>{
-//             setUser(currentuser)
-//             setLoading(false)
-           
-//         })
-//         return()=>{
-//             unsubscribe()
-//         }
-//         },[]);
 
-const authInfo={toggle,setToggle}
-    // const authInfo={user,signin,login,logout,GooglessigninProvider,updateUser,loading,setcountItems,itemsCount ,}
+const authInfo={toggle,setToggle ,setUser,
+    user,setSearchResult,searchResult,
+    loading,setLoading,
+
+    openModal,
+    setOpenModal,sub,setSub
+    
+}
+
+    useEffect(()=>{
+    
+        let User= window.localStorage.getItem("logineduser");
+        console.log(JSON.parse(User))
+        setUser(JSON.parse(User))
+        setLoading(false)
+        setOpenModal(false)
+    },[])
+    
 
     return(
         <div>

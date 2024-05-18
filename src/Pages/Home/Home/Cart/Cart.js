@@ -1,56 +1,28 @@
 import React from "react";
 import SingleCart from "./SingleCart";
+import { useCart } from "../../../../Context/CartProvider/Cart";
 
 const Cart=()=>{
 
-    const products=[
-        {
-            id:1,
-            name:"Xiaomi 13 Ultra",
-            brand:"Xiaomi",
-            category:"Olive Green, 12/256GB",
-            price:"12500",
-            img:"https://adminapi.applegadgetsbd.com/storage/media/thumb/4920-16716.jpg"
+    const [cart,setCart]=useCart()
 
-        },
-        {
-            id:2,
-            name:"Xiaomi 13 Ultra",
-            brand:"Xiaomi",
-            category:"Olive Green, 12/256GB",
-            price:"12500",
-            img:"https://adminapi.applegadgetsbd.com/storage/media/thumb/OnePlus-Pad-Green-a-5065.jpg"
+    const removeCartItem=(proID)=>{
 
+        try{
+            let myCart=[...cart]
+            let index=myCart.findIndex((item)=>item._id===proID)
+            myCart.splice(index,1)
+            setCart(myCart)
+            localStorage.setItem('cart',JSON.stringify(myCart))
+      
+        }
+        catch(error){
+            console.log(error)
+        }
+     
 
-        },
-        {
-            id:3,
-            name:"Xiaomi 13 Ultra",
-            brand:"Xiaomi",
-            category:"Olive Green, 12/256GB",
-            price:"12500",
-            img:"https://adminapi.applegadgetsbd.com/storage/media/thumb/Pixel-7a-1-1762.jpg"
+    }
 
-        },
-        {
-            id:4,
-            name:"Xiaomi 13 Ultra",
-            brand:"Xiaomi",
-            category:"Olive Green, 12/256GB",
-            price:"12500",
-            img:"https://adminapi.applegadgetsbd.com/storage/media/thumb/xiaomi-13-ultra-Olive-Green-Up-3118.jpg"
-
-        },
-        {
-            id:4,
-            name:"Xiaomi 13 Ultra",
-            brand:"Xiaomi",
-            category:"Olive Green, 12/256GB",
-            price:"12500",
-            img:"https://adminapi.applegadgetsbd.com/storage/media/thumb/xiaomi-13-ultra-Olive-Green-Up-3118.jpg"
-
-        },
-    ]
     return(
         <div className="w-full grid lg:grid-cols-3 grid-cols-1 gap-3 mt-5 pt-16 ">
         
@@ -61,8 +33,9 @@ const Cart=()=>{
 
                 </div>
                
-                {
-                    products.map(product=><SingleCart product={product}/>)
+                {cart&&
+                    cart.map(product=><SingleCart product={product} removeCartItem={removeCartItem}
+                    key={product._id}/>)
                 }
             </div>
             <div className="border border-1 rounded-md  h-[260px] mb-4 ">

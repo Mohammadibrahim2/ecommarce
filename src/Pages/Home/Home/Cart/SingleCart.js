@@ -1,7 +1,10 @@
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-const SingleCart = ({ product }) => {
-    const { img, brand, name, category, price } = product
+import { useCart } from "../../../../Context/CartProvider/Cart";
+const SingleCart = ({ product ,removeCartItem}) => {
+    
+    const { img, brand, name, category, price,_id} = product
+   
     return (
         <div className="py-3 px-3">
             <div className="flex flex-row justify-between px-3 items-center">
@@ -19,7 +22,7 @@ const SingleCart = ({ product }) => {
                         <h2 className="text-black">{name}</h2>
                         <div style={{ fontSize: "12px" }}>
                             <h2>Brand:<span className="text-orange-600">{brand}</span></h2>
-                            <span className="text-orange-600 ">{category}</span>
+                            <span className="text-orange-600 ">{category.name}</span>
 
                         </div>
                         <h1 className="mt-2">Unit Price: BDT 138000</h1>
@@ -28,7 +31,7 @@ const SingleCart = ({ product }) => {
                 <div className="flex flex-col justify-between items-center">
 
              
-                <span className="text-black py-3" style={{ fontSize: "17px" }}><RiDeleteBin6Line />
+                <span onClick={()=>removeCartItem(_id)} className="text-orange-500 py-3" style={{ fontSize: "17px" }}><RiDeleteBin6Line />
                 </span>
                 <h1 className="text-black">BDT 276000</h1>
                 </div>

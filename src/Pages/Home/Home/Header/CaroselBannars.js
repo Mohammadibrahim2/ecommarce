@@ -152,3 +152,4 @@ export default CaroselBannarItem
  iure quam voluptates asperiores illum iusto ?</p>
  <p>{slide.position}</p>
     <button className="py-1 px-2" style={{backgroundColor:" #ed1d24",color:"white",fontSize:"13px"}}> Shop Now</button> */}
+
