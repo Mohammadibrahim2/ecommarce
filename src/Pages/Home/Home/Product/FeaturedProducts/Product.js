@@ -16,7 +16,7 @@ const FeaturedProducts=()=>{
   console.log(orderedItems)
   const { refatch } = useQuery({
     queryKey: [''],
-    queryFn: () => fetch(`http://localhost:5000/product`)
+    queryFn: () => fetch(`http://localhost:8000/product/get-product`)
       .then(res => res.json())
       .then(data => {
         setMobileitems(data?.products)
@@ -55,7 +55,7 @@ const FeaturedProducts=()=>{
             <div className="grid lg:grid-cols-6 grid-cols-2 gap-2 py-4">
            
                 {
-                    items.map(item=>
+                    items?.map(item=>
                     <SingleProduct item={item} key={item._id}
                     setSelectedItems={setSelectedItems}
                     orderedItems={orderedItems}>

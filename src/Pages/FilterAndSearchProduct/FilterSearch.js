@@ -24,8 +24,8 @@ console.log(subId)
   const getcategories = async () => {
     try {
 
-      const { data } = await axios.get('http://localhost:5000/category')
-      setCategories(data)
+      const { data } = await axios.get('http://localhost:8000/category/get-categories')
+      setCategories(data?.categories)
     }
     catch (error) {
       console.log(error)
@@ -61,7 +61,7 @@ console.log(subId)
 
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/product`)
+      const { data } = await axios.get(`http://localhost:8000/product/get-product`)
       setProducts(data?.products)
     }
     catch (error) {
@@ -71,18 +71,18 @@ console.log(subId)
 
   }
   useEffect(() => {
-    if (!checked.length  || !radio.length || !subId.length ) getAllProducts()
+    if (!checked.length  || !radio.length  ) getAllProducts()
 
-  }, [checked.length, radio.length,subId.length ])
+  }, [checked.length, radio.length ])
 
   useEffect(() => {
-    if (checked.length || radio.length || subId.length >0 ) filterProduct()
+    if (checked.length || radio.length  ) filterProduct()
 
-  }, [checked, radio,subId])
+  }, [checked, radio])
   //get filtereed products
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("http://localhost:5000/product/product-filter", {checked, radio,subId})
+      const { data } = await axios.post("http://localhost:8000/product/product-filter", {checked, radio,subId})
       setProducts(data?.products)
     }
     catch (error) {
@@ -93,7 +93,7 @@ console.log(subId)
 
   return (
     <div>
-      <div className="subcategories mt-8 w-full flex flex-row justify-around">
+      {/* <div className="subcategories mt-8 w-full flex flex-row justify-around">
         {
           sub&&
           sub.map(s=><button   onClick={() => handleSubCat(s._id)}
@@ -102,7 +102,7 @@ console.log(subId)
         }
         
 
-      </div>
+      </div> */}
       < div className="flex lg:flex-row  lg:mt-8">
 
 
@@ -115,11 +115,11 @@ console.log(subId)
             <div className="category flex flex-col  my-4">
               {
                 categories.map(category =>
-                  <Checkbox key={category._id}
+                  <Checkbox key={category?._id}
                     className="mt-2 font-semibold"
                     onChange={(e) => handleFilter(e.target.checked, category._id)
                     }>
-                    {category.name}
+                    {category?.name}
 
                   </Checkbox>)
               }
@@ -136,7 +136,7 @@ console.log(subId)
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices.map(price =>
                 <div key={price._id}>
-                  <Radio value={price.array} className="mt-2 font-semibold">{price.name}</Radio>
+                  <Radio value={price?.array} className="mt-2 font-semibold">{price?.name}</Radio>
                 </div>)}
             </Radio.Group>
           </div>
@@ -156,14 +156,15 @@ console.log(subId)
 
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-2 py-4">
             {
-              products.map(item => <div class="card card-box  bg-white hover:shadow-2xl " key={products._id}>
+              products.map(item => <div class="card card-box  bg-white hover:shadow-2xl " key={products?._id}>
                 <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{5} % off</h2>
                 <figure class="px-10 pt-10">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoomJVQjRATG9zppvwYv2wtIxuo7H2gDYAlQ&usqp=CAU" alt="Shoes" class="rounded-xl" />
+                <img src={`http://localhost:8000/product/product-photo/${item?._id}`} 
+                    alt="Shoes" className="w-full h-full" />
                 </figure>
                 <div class="py-7 px-2 items-center text-center text-black">
                   <h2 class=" text-sm font-semibold ">{item?.name}</h2>
-                  <h2 class=" text-sm font-semibold text-orange-500 ">{item?.category.name}</h2>
+                  <h2 class=" text-sm font-semibold text-orange-500 ">{item?.category?.name}</h2>
                   <h2 class=" text-sm font-semibold text-orange-500 ">{item?.subcategory?.name}</h2>
 
                   <div className="flex flex-row justify-around py-3">

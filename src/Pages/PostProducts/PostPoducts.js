@@ -40,7 +40,8 @@ import PostSingleProduct from "./SingleProduct";
 
 
          <PostSingleProduct></PostSingleProduct>
-         <h1 className="text-black font-semibold text-center py-3 text-lg"> Add Multiple Product</h1>
+         //if need the emplement
+         {/* <h1 className="text-black font-semibold text-center py-3 text-lg"> Add Multiple Product</h1>
          <form className=" border border-orange-500 py-10 px-3 rounded-lg ">
         
          <input type="file" accept=".xlsx , .xls" className="block w-full text-sm text-slate-600
@@ -55,7 +56,7 @@ import PostSingleProduct from "./SingleProduct";
       
       <button className="py-2 px-20 bg-orange-500 text-white my-5 rounded-full">Save</button>
     
-    </form>
+    </form> */}
     </div>
           
 

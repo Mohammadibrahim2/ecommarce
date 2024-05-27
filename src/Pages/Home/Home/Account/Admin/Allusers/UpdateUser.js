@@ -4,6 +4,7 @@ import React from "react";
 const UpdateUser=()=>{
     return(
         <div>
+            <h1>updateProfile</h1>
               <form className="px-3 py-2  border w-full">
 
 

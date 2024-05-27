@@ -53,7 +53,7 @@ const Account = () => {
             id: 5,
             title: "Add Products",
             icon: <HiArrowRightOnRectangle />,
-            link: "postproduct"
+            link: "createproduct"
         },
         {
             id: 5,
@@ -141,11 +141,11 @@ const Account = () => {
                     </div>
 
 
-                    {user?._id &&
+                    {/* {user?._id && */}
                         <div >
                             <Outlet></Outlet>
                         </div>
-                    }
+                    {/* } */}
 
                 </div>
 

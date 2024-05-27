@@ -11,7 +11,7 @@ const [allProducts,setProducts]=useState([])
 
 const { refetch } = useQuery({
   queryKey: [''],
-  queryFn: () => fetch(`http://localhost:5000/product`)
+  queryFn: () => fetch(`http://localhost:8000/product`)
     .then(res => res.json())
     .then(data => {
       setProducts(data)
@@ -25,7 +25,7 @@ const { refetch } = useQuery({
 const handleDelete=(id)=>{
 
 if (window.confirm(`Are you sure to delete this  product?`) == true) {
-fetch(`http://localhost:5000/product/${id}`,{
+fetch(`http://localhost:8000/product/${id}`,{
 method:"DELETE"
 })
 .then(res=>res.json())

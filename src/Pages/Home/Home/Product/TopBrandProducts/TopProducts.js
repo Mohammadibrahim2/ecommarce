@@ -1,7 +1,9 @@
 import React from "react";
 import "../FeaturedProducts/Product.css"
+import toast from "react-hot-toast";
+import { useCart } from "../../../../../Context/CartProvider/Cart";
 const TopBrandProducts=()=>{
-
+    const [cart,setCart]=useCart()
     const items=[
         {
             id:1,
@@ -131,7 +133,12 @@ const TopBrandProducts=()=>{
                         <del className="ml-2">{item.discount}tk</del>
                       </div>
                       <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
-                        <button className="px-3  border border-orange-700 text-orange-500 rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}}>Add to cart</button>
+                        <button className="px-3  border border-orange-700 text-orange-500 rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}} 
+                        onClick={()=>{
+                            setCart([...cart,item])
+                            localStorage.setItem('cart',JSON.stringify([...cart,item]))
+                            toast.success("your product is adding ")
+                           }}>Add to cart</button>
                         <button className="px-2 bg-orange-600 text-white border rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}}>Buy Now</button>
                       </div>
                     </div>

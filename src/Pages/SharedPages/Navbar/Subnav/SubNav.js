@@ -45,7 +45,7 @@ const handlesubcat=(id)=>{
 
                 <div className="bg-white navitems lg:relative z-30 flex lg:flex-row-reverse flex-col-reverse lg:justify-center  lg:items-center items-start lg:w-full w-2/3 ">
                     {
-                        categories.map(item => <div className="flex flex-row justify-between items-center lg:mr-4 mt-3">
+                        categories?.map(item => <div className="flex flex-row justify-between items-center lg:mr-4 mt-3">
 
 
                             <Link to="/filter">

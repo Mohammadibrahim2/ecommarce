@@ -13,7 +13,7 @@ const Register = () => {
 
     const handleSinup = (data) => {
         
-        fetch('http://localhost:5000/user/register', {
+        fetch('http://localhost:8000/user/register', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -26,8 +26,8 @@ const Register = () => {
                 console.log(data)
                 setUser(data)
                 toast.success('Successfully registered')
-                setLoading(false)
-                setOpenModal(false)
+                // setLoading(false)
+                // setOpenModal(false)
                 // setCreatedUserEmail(email);
                
 
@@ -49,13 +49,13 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text   text-black font-semibold" style={{ fontSize: "16px" }}>First Name  <strong >*</strong> </span>
                         </label>
-                        <input type="text" {...register("fName", { required: "text is requred" })} className="border-black py-2 px-3 bg-white text-black border" />
+                        <input type="text" {...register("firstName", { required: "text is requred" })} className="border-black py-2 px-3 bg-white text-black border" />
                     </div>
                     <div className="form-control  text-black font-semibold">
                         <label className="label">
                             <span className="label-text  text-black font-semibold" style={{ fontSize: "16px" }}>Last Name <strong >*</strong> </span>
                         </label>
-                        <input type="text" {...register("lName", { required: "text is requred" })} className="border-black py-2 px-3 bg-white text-black border" />
+                        <input type="text" {...register("lastName", { required: "text is requred" })} className="border-black py-2 px-3 bg-white text-black border" />
 
                     </div>
 
@@ -81,11 +81,11 @@ const Register = () => {
 
                     </div>
 
-                    {/* <select {...register("isAdmin", { required: true })} className="border-black py-2 px-3 bg-white text-black border w-full mt-3">
+                    <select {...register("isAdmin", { required: true })} className="border-black py-2 px-3 bg-white text-black border w-full mt-3">
                       
                         <option value="true" className="border-black py-2 px-3 bg-white text-black border">yes</option>
                         <option value="false"  className="border-black py-2 px-3 bg-white text-black border">no</option>
-                    </select> */}
+                    </select>
 
 
 

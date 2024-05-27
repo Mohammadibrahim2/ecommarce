@@ -105,22 +105,22 @@ export const router=createBrowserRouter([
             },
             {
                 path:"/dashboard/allproducts",
-                element:<AdminRoute><AllProducts/></AdminRoute>
+                element:<AllProducts/>
 
             },
             {
-                path:"/dashboard/postproduct",
-                element:<AdminRoute><PostProduct></PostProduct></AdminRoute>
+                path:"/dashboard/createproduct",
+                element:<PostProduct/>
 
             },
             {
                 path:"/dashboard/allorders",
-                element:<AdminRoute><AllOrders/></AdminRoute>
+                element:<AllOrders/>
 
             },
             {
                 path:"/dashboard/allusers",
-                element:<AdminRoute><AllUsers/></AdminRoute>
+                element:<AllUsers/>
 
             },
             {

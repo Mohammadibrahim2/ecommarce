@@ -38,10 +38,10 @@ const navigate=useNavigate()
   const  handelSearch= async(e)=>{
  
     e.preventDefault()
-   
+   console.log(values?.keyword)
 try{
 
-    const {data} =await axios.get(`http://localhost:5000/product/search/${values?.keyword}`)
+    const {data} =await axios.get(`http://localhost:8000/product/search/${values?.keyword}`)
     setValues({...values,results:data})
     console.log(values)
     navigate('/search')
@@ -97,7 +97,7 @@ const handleLogout=()=>{
 
 
 
-    user?._id ? <Link to="/dashboard">
+    user?.email? <Link to="/dashboard">
     <li className="flex flex-row justify-center items-center mr-8">
     <span className="mr-2" style={{fontSize:"25px"}}><BiUser/></span>
     <div className="text-white flex flex-col items-start" style={{fontSize:"13px"}}>
@@ -140,8 +140,8 @@ const handleLogout=()=>{
                 <input type="search" 
                 value={values.keyword}
                 onChange={(e)=>setValues({...values,keyword:e.target.value})}
-                 className="bg-white text-black  lg:pr-48 pl-2 py-2 rounded-md   "
-                  placeholder="Search"></input>
+                 className="bg-white text-black  lg:pr-48  py-2 rounded-md   "
+                  placeholder=" Search"></input>
               
               
               

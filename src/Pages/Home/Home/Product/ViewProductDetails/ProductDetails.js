@@ -1,29 +1,29 @@
 import React from "react";
 import { toast } from "react-hot-toast";
 import { useCart } from "../../../../../Context/CartProvider/Cart";
+import { useNavigate } from "react-router-dom";
+
 
 
 const ProductDetails=({product})=>{
   const [cart,setCart]=useCart()
+  const navigate=useNavigate()
     return(
         < div className=" w-full">
         <div class="bg-white flex lg:flex-row justify-center w-full ">
        
 
       
-    <figure class=" h-[300px]" >
-    <h2 className="w-[70px] bg-orange-600 text-white px-2  text-md  rounded-md ">{5} % off</h2>
-      
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoomJVQjRATG9zppvwYv2wtIxuo7H2gDYAlQ&usqp=CAU" alt="Shoes"
-       className="h-full rounded-xl" />
+        <figure class="px-10 pt-10" 
+    onClick={()=>navigate(`/product/${product?._id}`)}>
+       <img src={`http://localhost:8000/product/product-photo/${product?._id}`} alt="Shoes" className="w-full h-full" />
     </figure>
-
   
     <div class="py-7 px-2 text-black lg:w-2/3">
       <h2 className=" text-2xl font-semibold py-2 text-uppercase ">{product?.name}</h2>
       <div className="flex flex-row  items-start  w-full">
       <h1 className="px-2 py-2 bg-zinc-100 font-semibold">Cash Discount Price:
-       <del className="text-zinc-400 mx-3">50</del> <span className="font-bold">{product?.price} kr</span></h1>
+       <del className="text-zinc-400 mx-3">50</del> <span className="font-bold">{product?.price} tk</span></h1>
 
       <h1 className="px-2 py-2 bg-zinc-100 mx-3">Status:<span className="font-bold">  IsStock</span></h1>
       <h1 className="px-2 py-2 bg-zinc-100">Product Code:<span className="font-bold"> pro-20</span></h1>

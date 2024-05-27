@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const SingleProduct=({item,setSelectedItems, orderedItems})=>{
 
-  console.log(item)
+
 
   const navigate=useNavigate()
 
@@ -22,17 +22,17 @@ const SingleProduct=({item,setSelectedItems, orderedItems})=>{
       
     <figure class="px-10 pt-10" 
     onClick={()=>navigate(`/product/${item._id}`)}>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoomJVQjRATG9zppvwYv2wtIxuo7H2gDYAlQ&usqp=CAU" alt="Shoes" class="rounded-xl" />
+       <img src={`http://localhost:8000/product/product-photo/${item?._id}`} alt="Shoes" className="w-full h-full" />
     </figure>
   
     <div class="py-7 px-2 items-center text-center text-black">
       <h2 class=" text-sm font-semibold ">{item?.name}</h2>
       <div className="flex flex-row justify-around py-3">
         <span>{item?.price}tk</span>
-        <del className="ml-2">{parseInt(item?.price)+2000}tk</del>
+        <del className="ml-2">{parseInt(item?.price)}tk</del>
       </div>
       <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
-      {/* <h1>{item.category.name}</h1> */}
+      <h1>{item?.category?.name}</h1>
       <label className="px-3  border border-orange-700 text-orange-500 rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}} 
 
 onClick={()=>{

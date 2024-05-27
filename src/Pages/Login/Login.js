@@ -11,7 +11,7 @@ const Login=()=>{
  
     const handleLogin = (data) => {
         
-        fetch('http://localhost:5000/user/login', {
+        fetch('http://localhost:8000/user/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -21,17 +21,28 @@ const Login=()=>{
         .then(res => res.json())
         .then(data =>{
             if(data){
-           
-                toast.success('Successfully login ')
-             
-                localStorage.setItem("accesstoken",data.token)
-                localStorage.setItem("logineduser",JSON.stringify(data.user))
+           console.log(data)
+               if(data?.success){
+                toast.success(data?.message)
+               }
+               else{
+                toast.error(data?.message)
+               }
+               
+             if(data?.success){
+                localStorage.setItem("accesstoken",data?.token)
+                localStorage.setItem("logineduser",JSON.stringify(data?.user))
                
                 let User= window.localStorage.getItem("logineduser");
-                console.log(JSON.parse(User))
-                setUser(JSON.parse(User))
-                setLoading(false)
-                setOpenModal(false)
+                if(User){
+                    console.log(JSON.parse(User))
+                    setUser(JSON.parse(User))
+                    setLoading(false)
+                    setOpenModal(false)
+                }
+               
+             }
+                
                 
 
             }
