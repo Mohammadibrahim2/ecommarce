@@ -10,12 +10,14 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 
 
+
 const Main = () => {
     
     return (
         <div className="bg-white">
             <Navbar1></Navbar1>
             <SubNav></SubNav>
+           
 
          
 

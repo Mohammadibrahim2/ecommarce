@@ -3,46 +3,48 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {RiEdit2Fill} from "react-icons/ri";
 import { MdDeleteSweep} from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
+
 import { toast } from "react-hot-toast";
 
 const AllProducts=()=>{
 const [allProducts,setProducts]=useState([])
+useEffect(()=>{
+   getProduct()
+},[])
 
-const { refetch } = useQuery({
-  queryKey: [''],
-  queryFn: () => fetch(`http://localhost:8000/product`)
-    .then(res => res.json())
-    .then(data => {
-      setProducts(data)
-      console.log(data)
-    })
-
-
-
-})
-
-const handleDelete=(id)=>{
-
-if (window.confirm(`Are you sure to delete this  product?`) == true) {
-fetch(`http://localhost:8000/product/${id}`,{
-method:"DELETE"
-})
-.then(res=>res.json())
-.then(data=>{
-toast.success(data?.message)
-refetch()
-})
-
-
-} else {
-return
+const getProduct= async()=>{
+ try{
+  const {data}=await axios(`http://localhost:8000/product/get-product`)
+  setProducts(data?.products)
+  console.log(data?.products)
+  
+ }
+ catch(error){
+  console.log(error)
+ }
 }
 
+// const handleDelete=(id)=>{
+
+// if (window.confirm(`Are you sure to delete this  product?`) == true) {
+// fetch(`http://localhost:8000/product/${id}`,{
+// method:"DELETE"
+// })
+// .then(res=>res.json())
+// .then(data=>{
+// toast.success(data?.message)
+// refetch()
+// })
+
+
+// } else {
+// return
+// }
 
 
 
-}
+
+// }
     return(
         <div className="">
   <table className="table border">
@@ -65,14 +67,14 @@ return
     <tbody className="text-black font-semibold">
       {/* row */}
    
-        {
-           allProducts?.products?.map(p=> <tr key={p._id}>
+        { allProducts&&
+           allProducts.map(p=> <tr key={p._id}>
                 
                 <td> 
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src="https://static.doofinder.com/main-files/uploads/2021/02/amazon-shopify-prestashop-768x461.png" 
+                        <img src={`http://localhost:8000/product/product-photo/${p?._id}`}
                         alt="Products Image" />
                       </div>
                     </div>
@@ -87,7 +89,7 @@ return
                
                 </td>
                 <td>
-                    {p.category.name}
+                    {p?.category?.name}
                 </td>
                 <td>{p?.brand}</td>
                 <td>
@@ -99,13 +101,13 @@ return
                    style={{color:"green"}} ><RiEdit2Fill/></button></Link>
                 </td>
                 <td  > 
-                  <button className=" text-xl font-semibold" onClick={()=>handleDelete(p?._id)}
+                  <button className=" text-xl font-semibold"
                     style={{color:"red"}} ><MdDeleteSweep/></button>
                 </td>
               </tr>)
         }
    
-    
+    {/*  onClick={()=>handleDelete(p?._id)} */}
       {/* row 2 */}
       
     </tbody>

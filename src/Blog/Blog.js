@@ -36,14 +36,14 @@ const Blog=()=>{
     ]
     return(
         <div>
-            <div>
+            {/* <div>
                 {
                     blogs.map(blog=><div key={blog.id}>
                         <h1 className="text-3xl font-semibold text-orange-500">{blog.title}</h1>
                         <p className="text-black text-xs my-3">{blog.des}</p>
                     </div>)
                 }
-                </div>
+                </div> */}
 
         </div>
     )

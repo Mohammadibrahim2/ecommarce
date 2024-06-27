@@ -12,7 +12,7 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
  const PostSingleProduct=()=>{
     const {user,setUser}=useContext(AuthContext)
     const [data,setData]=useState( )
-    // const {register,formState: { errors }, handleSubmit}=useForm()
+
     const [categories, setCategories] = useState([])
     const [category, setCategory] = useState('')
     const [name, setName] = useState('')
@@ -21,41 +21,7 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
     const navigate = useNavigate()
-   //onSubmit={handleSubmit(handleSinup)}
 
-//  const handleProduct=(alldata)=>{
-//     console.log(alldata)
-//     const photo=alldata.photo[0]
-//     console.log(alldata.photo[0])
-
-//     const formData=new FormData()
-//     formData.append("image",photo)
-//     const url="https://api.imgbb.com/1/upload?expiration=600&key=acbca0356cf868436c7c6a4a4783d467"
-//     fetch(url,{
-//         method:"POST",
-//         body:formData
-//     })
-//     .then(res=>res.json())
-//     .then(img=>{
-//         if(img.success){
-           
-//            let  productImg=img.data.url
-//            alldata.photo= productImg
-//             console.log(alldata)
-//             fetch('http://localhost:8000/product/create-product', {
-//                 method: 'POST',
-//                 headers: {
-//                     'content-type': 'application/json'
-//                 },
-//                 body: JSON.stringify(alldata)
-//             }).then(res=>res.json())
-//             .then(data=>{
-//                 console.log(data)
-//             })
-    
-//             }});
-        
-//  }
    //getting categories:- 
  const getAllCategories = async () => {
     try {

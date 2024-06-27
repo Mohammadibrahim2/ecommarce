@@ -114,6 +114,7 @@ else{
         <span className="label-text  text-black " style={{ fontSize: "14px" }}>Password</span>
     </label>
     <input type="password" name="password"
+    placeholder="XXXYYYZZZ"
         className=" py-2 px-3 bg-white border  "
        
         onChange={(e) => setPassrowd(e.target.value)} />

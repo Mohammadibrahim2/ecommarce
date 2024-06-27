@@ -27,7 +27,8 @@ const Footer=()=>{
     const socialIcons=[
         {
             id:1,
-            img:facebook
+            img:facebook,
+            url:""
         },
         {
             id:2,
@@ -47,17 +48,27 @@ const Footer=()=>{
         <div className="bg-zinc-900 text-white ">
             <div className="flex lg:flex-row flex-col justify-around items-center py-20">
                 <div>
-                    <h1 className="text-orange-600 font-semibold  py-2 text-md mt-4">SUPPORT</h1>
+                    
+                    <h1 className="text-orange-600 font-semibold  py-2 text-md mt-4 text-center">SUPPORT</h1>
                     <div className="">
-                        <div className=" flex flex-row justify-center items-center py-4  border border-orange-600 rounded-full lg:w-[250px] w-[200px]  ">
-                        <span className="pr-2"><IoCall/></span>|<h1 className="pl-2">01632846454</h1>
-                        </div>
-                        <div className=" flex flex-row justify-center items-center  px-4 py-2 border border-orange-600 rounded-full lg:w-[250px] w-[200px] my-3">
-                        <span className="pr-2"><IoLocationSharp/></span>|
+                       
+                        <div className=" flex flex-row justify-start items-center  px-4 py-2  my-3">
+                        <span className="pr-4 text-xl"><IoCall/></span>|
                         <div className="pl-2">
-                            <h2 style={{fontSize:"10px"}}>store locater</h2>
+                            <h1>01632846454</h1>
 
-                        <h1 >Find our storages</h1>
+                        <h1 >01846579945</h1>
+
+                        </div>
+                       
+                     
+                        </div>
+                        <div className=" flex flex-row justify-center items-center  px-4 py-2  my-3">
+                        <span className="pr-4 text-xl"><IoLocationSharp/></span>|
+                        <div className="pl-2">
+                            <h2 style={{fontSize:"13px"}}>Location</h2>
+
+                        <h1 >Powro Bazar,Maijdee,Noakhali</h1>
 
                         </div>
                        
@@ -101,7 +112,7 @@ const Footer=()=>{
 
             </div>
             <div className="bg-black text-white text-center py-3 " style={{fontSize:"13px"}}>
-                <h1>© 2023 Thanks From Ecommarce Ltd. | All rights reserved</h1>
+                <h1>© 2024 Thanks From Ecommarce Ltd. | All rights reserved</h1>
 
             </div>
 

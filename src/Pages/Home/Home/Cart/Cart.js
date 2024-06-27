@@ -4,14 +4,16 @@ import { useCart } from "../../../../Context/CartProvider/Cart";
 import { Badge } from "antd";
 import axios from "axios";
 import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
-import DropIn from "braintree-web-drop-in-react";
+
+import { Link, Navigate } from "react-router-dom";
+
 
 const Cart = () => {
 
     const [cart, setCart] = useCart()
-    // const [user,setUser]=useContext(AuthContext)
-    const [clientToken, setClienttoken] = useState("")
-    const [instanse, setInstanse] = useState("")
+    const {user,setUser}=useContext(AuthContext)
+    const [ClientToken, setClienttoken] = useState("")
+    const [instance, setInstance] = useState("")
     const [loading, setLoading] = useState(false)
     const[wholePrice,setWholePrice]=useState()
     //total price
@@ -19,20 +21,25 @@ const Cart = () => {
         try {
 
             let total=0
-            cart?.map((i)=>{
-                total=total+=i.price
-                setWholePrice(total)
-            });
+            cart.map((i)=>{
+             total=total +i.price
+             setWholePrice(total)
+            })
+            console.log(total)
             return total.toLocaleString("en-US",{
                 style:"currency",
                 currency:"USD"
             })
+           
         }
         catch (error) {
             console.log(error)
         }
     }
 
+    useEffect(()=>{
+        totalPrice()
+    },[])
     const removeCartItem = (proID) => {
 
         try {
@@ -50,24 +57,29 @@ const Cart = () => {
 
     }
     //getway payment getway token
-    const getToken = async () => {
-        try {
-            const { data } = axios.get("http://localhost:8000/product/brainTree/token")
-            setClienttoken(data?.clientToken)
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        getToken()
-    }, [])
-    //user?.token
+   
 
 
-    //handle payment
-    const handlePayment=()=>{
+    const handlePayment=async(cart,user)=>{
+try{
+    
+    const {data}=await axios.post("http://localhost:8000/product/order",{
+       cart,user
+    })
+    console.log(data.url)
+    window.location.replace(data?.url)
+   
+    
+    
+
+}
+catch(err){
+    console.log(err)
+    setLoading(false)
+
+}
+
+
 
     }
     return (
@@ -85,7 +97,7 @@ const Cart = () => {
                         key={product?._id} />)
                 }
             </div>
-            <div className="border border-1 rounded-md  h-[560px] mb-4 ">
+            <div className="border border-1 rounded-md  h-auto mb-4 ">
                 <div className="text-center mt-3">
                     <h1 className="text-black">Your Cart  <Badge count={cart?.length} size="small" /></h1>
                     <h6 style={{ fontSize: "11px" }}>Start adding items to your cart</h6>
@@ -99,33 +111,32 @@ const Cart = () => {
                     <div className="flex flex-row justify-between  border-b-2 px-2 pb-2 text-black font-semibold" style={{ fontSize: "13px" }} >
                         <h1>Delivery Charges</h1><span>(will be added)</span></div>
                     <div className="flex flex-row justify-between px-2 text-black">
-                        <h1>Total Amount</h1><span>BDT 458000</span>
+                        <h1>Total Amount</h1><span>BDT {wholePrice}</span>
                     </div>
                 </div>
                 <div className="text-center py-3">
-                    <button className="py-2 px-14 bg-orange-500 rounded-md text-white font-semibold shadow-lg" style={{ fontSize: "12px" }} >CHECK OUT</button>
+                 <h3 className=" text-orange-500  font-semibold">{user?
+                    <span> { user?.email}</span>:
+                    <div>  <li className="flex flex-row justify-center items-center  cursor-pointer" htmlFor="registerModal"/>
+                    Please   
+    <label  htmlFor="registerModal" className="mr-2 text-black my-2" >    log in</label>
+    to checkout
+                    </div>}
+                     </h3>
+               
 
                 </div>
 
-                <div className="payment">
-                <DropIn
-                    options={{
-
-                        authorization: clientToken,
-                        paypal: {
-                            flow: 'vault'
-                        }
-                    }
-                    }
-                    onInstance={instanse => setInstanse(instanse)}
-                />
+                <div className="payment w-full h-[500px]  mt-4">
                 <div className="text-center py-3">
-                    <button className="py-2 px-14 bg-orange-500
-                     rounded-md text-white font-semibold shadow-lg"
-                      style={{ fontSize: "12px" }}
-                      onClick={handlePayment} >Make payment</button>
+                    <button className="py-2 px-14 bg-orange-500 rounded-md text-white font-semibold shadow-lg"
+                      style={{ fontSize: "15px" }}
+                      onClick={()=>handlePayment(cart,user)}
+                      
+                      >Make payment</button>
 
                 </div>
+              
             </div>
 
             </div>
@@ -134,3 +145,4 @@ const Cart = () => {
     )
 }
 export default Cart
+// //

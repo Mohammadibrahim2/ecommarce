@@ -46,7 +46,7 @@ const ResponsiveNav=()=>{
 
     ]
     return(
-        <div className="bg-black text-orange-600 px-2 py-4 bottom-0 w-full fixed  z-40  lg:hidden ">
+        <div className="bg-black text-orange-600 px-2 py-4 bottom-0 w-full fixed  z-40  lg:hidden  ">
            
              
 

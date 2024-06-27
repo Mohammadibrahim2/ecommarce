@@ -28,7 +28,7 @@ const handlesubcat=(id)=>{
     console.log(arraysub)
 
 }
-   
+ 
 
     console.log(subcategories)
 
@@ -45,7 +45,7 @@ const handlesubcat=(id)=>{
 
                 <div className="bg-white navitems lg:relative z-30 flex lg:flex-row-reverse flex-col-reverse lg:justify-center  lg:items-center items-start lg:w-full w-2/3 ">
                     {
-                        categories?.map(item => <div className="flex flex-row justify-between items-center lg:mr-4 mt-3">
+                     categories?.map(item => <div className="flex flex-row justify-between items-center lg:mr-4 mt-3">
 
 
                             <Link to="/filter">
@@ -65,14 +65,17 @@ const handlesubcat=(id)=>{
             {/* for responsiveness */}
 
 
-            <div className="relative bg-white h-full lg:hidden block">
+            <div className="relative bg-orange-500 h-full lg:hidden block">
 
 
 
 
-                <div className={`bg-white navitems h-full fixed  top-[68px] ${toggle ? "left-[-400px]" : "left-[3px]"} subnav z-30 flex  flex-col-reverse justify-end items-start  w-1/2 `}>
+                <div className={`bg-white navitems h-full fixed 
+                     top-[80px] ${toggle ? "left-[-400px]" : "left-[3px]"} 
+                     subnav z-30 flex  flex-col-reverse justify-end items-start  w-1/2 `}>
                     {
-                        categories.map(item => <div className="flex flex-row justify-between items-start py-2 pr-2 border w-full">
+                     categories.map(item => <div className="flex flex-row justify-between items-start
+                        py-2 pr-2 border w-full">
 
 
                             <Link to="/">

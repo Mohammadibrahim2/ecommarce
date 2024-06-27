@@ -1,82 +1,44 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Modal } from 'antd';
 import { useState } from 'react';
-import {BsSearch} from 'react-icons/bs'
-import { Button,  Form, Input } from 'antd';
+import { BsSearch } from 'react-icons/bs'
+import OpenMobileModal from './MobileViewModel';
 
-const SearchModal= ({handelSearch,setValues,values}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+
+
+const SearchModal = ({setValues, values ,isModalOpen,setIsModalOpen,handelSearch}) => {
+  
+
+  
   return (
-    <div>
-     
-      <BsSearch  type="primary" className='text-2xl text-orange-500 lg:hidden block' onClick={showModal}/>
-   
-      <Modal  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}
-       okButtonProps={{
-        disabled: true,
-      }}
-      cancelButtonProps={{
-        disabled: true,
-      }}>
-     <Form
-    name="basic"
-    labelCol={{
-      span: 8,
-    }}
-    wrapperCol={{
-      span: 16,
-    }}
-    style={{
-      maxWidth: 600,
-    }}
-    initialValues={{
-      remember: true,
-    }}
-   
-    autoComplete="off"
-  >
-    <Form.Item
-      label="Username"
-      name="username"
-      rules={[
-        {
-          required: true,
-          message: 'search',
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
+    <div className={`w-full h-full   
+     absolute 
+     left-[1px] ${isModalOpen? "top-[-500px]":"top-[84px]"} `}>
+      <div className='model  w-full    '>
+       
+        <div className={`${isModalOpen? "hidden":"block"} `}>
 
-    
+          <form className="parent  " onSubmit={handelSearch}>
+            <input 
+              value={values.keyword}
+              onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+              className="bg-white text-black 
+               px-2 py-4  w-full "
+              placeholder=" Search"></input> 
 
-   
-    <Form.Item
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Button type="primary" htmlType="submit" 
-      style={{color:"orange"}}>
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
-           
-      </Modal>
+
+            <button type="submit" className="child z-10 text-xl ml-[100px]  "><BsSearch /></button>
+
+          </form>
+        </div>
+
+      </div>
+
+
     </div>
-  );
+  )
+
+
 };
 export default SearchModal;
-//

@@ -5,8 +5,11 @@ const SearchProvider=({children})=>{
     const [values,setValues]=useState({
         keyword:" ",
         results:[]
-    })
+    });
 
+   
+    
+   
    
     return(
         <SearchContext.Provider  value={[values,setValues]}>

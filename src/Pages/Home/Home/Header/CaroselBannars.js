@@ -68,7 +68,7 @@ const CaroselBannarItem = () => {
 
 
     const settings = {
-        dots: true,
+        // dots: true,
         //    fade:true,
         infinite: true,
         speed: 500,

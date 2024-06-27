@@ -8,6 +8,8 @@ import ShopByBrands from "./ShopByBrands/ShopByBrands";
 import FeatruedCategories from "./FeaturedCategory/Categories/FeaturedCategories";
 import Blog from "../../../Blog/Blog";
 import PostData from "../../../AccountLayout/PostData";
+import CreateReview from "./ReviewSection/CreateReview";
+import OpenMobileModal from "../../SharedPages/Navbar/Navbar/SearchModal/MobileViewModel";
 
 
 
@@ -16,6 +18,7 @@ const Home=()=>{
         <div className="text-oranger-500">
 
             <Header></Header>
+            
          
             <PostData></PostData>
            
@@ -26,6 +29,7 @@ const Home=()=>{
             <TopBrandProducts></TopBrandProducts>
             <Bannar1></Bannar1>
             <ShopByBrands></ShopByBrands>
+            <CreateReview/>
             <Blog></Blog>
         </div>
     )

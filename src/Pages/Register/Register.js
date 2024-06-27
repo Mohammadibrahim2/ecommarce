@@ -27,7 +27,7 @@ const Register = () => {
                 setUser(data)
                 toast.success('Successfully registered')
                 // setLoading(false)
-                // setOpenModal(false)
+                setOpenModal(false)
                 // setCreatedUserEmail(email);
                
 
@@ -78,6 +78,13 @@ const Register = () => {
                             <span className="label-text  text-black font-semibold" style={{ fontSize: "16px" }}>Password <strong >*</strong> </span>
                         </label>
                         <input type="password" {...register("password", { required: "text is requred" })} className="border-black py-2 px-3 bg-white text-black border" />
+
+                    </div>
+                    <div className="form-control  text-black font-semibold">
+                        <label className="label">
+                            <span className="label-text  text-black font-semibold" style={{ fontSize: "16px" }}>Adress <strong >*</strong> </span>
+                        </label>
+                        <input type="text" {...register("adress", { required: "text is requred" })} className="border-black py-2 px-3 bg-white text-black border" />
 
                     </div>
 

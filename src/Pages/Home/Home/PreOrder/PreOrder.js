@@ -1,17 +1,65 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiLoginBoxFill } from "react-icons/ri"
+import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
+import axios from "axios";
 const PreOrder = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm()
-    const handleSinup = () => {
+
+    const { user, setUser } = useContext(AuthContext)
+    const [data, setData] = useState()
+
+    const [name, setName] = useState('')
+    const [adress, setAdress] = useState('')
+    const [photo, setPhoto] = useState('')
+
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [userName, setUserName] = useState('')
+
+    const navigate = useNavigate()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const productData = new FormData()
+            productData.append("name", name)
+
+            productData.append("photo", photo)
+            productData.append("userName", userName)
+            productData.append("adress", adress)
+            productData.append("phone", phone)
+            productData.append("email", email)
+
+
+            console.log({ name, photo, adress, phone, email ,userName})
+            // console.log({productData})
+            //   const {data}=await axios.post('http://localhost:8000/preOrder/create-preOrder',productData)
+
+            //     if(data?.success){
+            //         // navigate("/")
+            //         toast.success(data?.message)
+            //         console.log(data?.message)
+
+            //     }
+            //     else{
+            //         toast.error(data?.message)
+            //     }
+
+        }
+        catch (error) {
+            console.log(error)
+
+        }
+
+
 
     }
     return (
         <div>
-            <div className="text-center mt-8 pt-24">
+            <div className="text-center mt-2 pt-12">
                 <h1 className="text-xl font-semibold text-orange-500">Looking For Something Different ??</h1>
-                <h2 className="text-black">Put Your Information in The Box...</h2>
+                <h2 className="text-black my-4">Put Your Information in The Box...</h2>
             </div>
 
             <div className="from">
@@ -19,81 +67,90 @@ const PreOrder = () => {
 
 
                     <div className="  lg:w-1/2 md:w-2/3 w-full">
-                        <form onSubmit={handleSubmit(handleSinup)} className="lg:p-10 p-2">
-                            {/* <h1 className="flex flex-row items-center text-2xl text-black font-semibold my-3">
-                     Product Information </h1> */}
-                            <div className="form-control">
+                      <form className="px-8 py-8  border w-full" onSubmit={handleSubmit}>
+
+                            
+
+
+                            <div className="form-control my-4">
                                 <label className="label">
-                                    <span className="label-text  text-black font-semibold " style={{ fontSize: "16px" }}> Product Information</span>
+                                    <span className="label-text   text-black " style={{ fontSize: "14px" }}>Product Name & Product Information </span>
                                 </label>
-                                <input type="text" placeholder="Enter Product Name /URL" {...register("userName", { required: "text is requred" })} className=" py-2 px-3 w-full  bg-violet-50 text-black border " />
+                                <input type="name" name="name"
+                                    placeholder="Product Info"
+                                    className=" py-2 px-3 bg-white border "
+                                    onChange={(e) => setName(e.target.value)} />
                             </div>
 
 
-
-                            <div className="form-control">
-                            <label class="block">
-                               
-                                    <label class="block">
-                                    <span className="label-text  text-black font-semibold mt-4" style={{ fontSize: "16px" }}>Add Image</span>
-                                       
-                                        <input type="file" class="block w-full text-sm text-slate-500
-                                          file:mr-4 file:py-2 file:px-4
-                                           file:rounded-md file:border-0
-                                            file:text-sm file:font-semibold
-                                          file:bg-violet-50 file:text-black
-                                          hover:file:bg-violet-100
-                                            my-2
-                                          "/>
-                                    </label>
-                                    </label>
-                                  
-                               
-                            </div>
-                            <div className="form-control">
+                            <div className="form-control  text-black overflow-hidden  my-3">
                                 <label className="label">
-                                    <span className="label-text  text-black font-semibold " style={{ fontSize: "16px" }}>Name</span>
+                                    <span className="btn btn-outline-primary w-full  text-black "
+                                        style={{ fontSize: "14px" }}>{photo ? photo.name : "Upload Photo"}</span>
+                                    <input type="file"
+                                        name="photo"
+                                        accept="image/*"
+                                        onChange={(e) => setPhoto(e.target.files[0])} className="w-full py-2 px-3  border hidden  " />
                                 </label>
-                                <input type="name" placeholder="Enter Name" {...register("name", { required: "text is requred" })} className=" py-2 px-3 bg-violet-50 text-black border w-full " />
-                            </div>
-                            <div className="flex lg:flex-row flex-col lg:justify-evenly">
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text  text-black font-semibold " style={{ fontSize: "16px" }}>Phone</span>
-                                    </label>
-                                    <input type="phone" placeholder="Ente Phone NO." {...register("phone", { required: "text is requred" })} className=" py-2 px-3 bg-violet-50 text-black border w-full " />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text  text-black font-semibold " style={{ fontSize: "16px" }}>Email  </span>
-                                    </label>
-                                    <input type="email" placeholder="Enter Email Adress" {...register("email", { required: "text is requred" })} className=" py-2 px-3 bg-violet-50 text-black border w-full " />
-                                </div>
+
 
                             </div>
 
-                            <div className="form-control">
+                          
+                            <div className="form-control my-3">
                                 <label className="label">
-                                    <span className="label-text text-black font-semibold" style={{ fontSize: "16px" }}>Adress </span>
+                                    <span className="label-text   text-black " style={{ fontSize: "14px" }}>Your Name </span>
                                 </label>
-                                <textarea type="password"  rows="4"  placeholder="Enter Adress" {...register("password", { required: "text is requred" })} className=" py-2 px-3 bg-violet-50 text-black border lg:w-full w-full" />
-
+                                <input type="userName" name="userName"
+                                    placeholder="Your Name"
+                                 required
+                                    className=" py-2 px-3 bg-white border "
+                                    onChange={(e) => setUserName(e.target.value)} />
                             </div>
-                            {/* <select name="userRole"className="py-2 px-3  border-black w-full bg-white text-black border my-3">
-                       <option className="font-semibold" style={{color:"#ed1d24"}}>Admin</option>
-                           <option  className="font-semibold "style={{color:"#ed1d24"}}>Buyer</option>
-                           <option  className="font-semibold" style={{color:"#ed1d24"}}>Seller</option>
-                       </select> */}
+                            <div className="form-control my-3">
+                                <label className="label">
+                                    <span className="label-text   text-black " style={{ fontSize: "14px" }}>Your Adress </span>
+                                </label>
+                                <input type="adress" name="adress"
+                                    placeholder="Your Adress"
+                                 required
+                                    className=" py-2 px-3 bg-white border "
+                                    onChange={(e) => setAdress(e.target.value)} />
+                            </div>
+                            <div className="form-control my-3">
+                                <label className="label">
+                                    <span className="label-text   text-black " style={{ fontSize: "14px" }}>Your Email </span>
+                                </label>
+                                <input type="email" name="email"
+                                    placeholder="Your Email"
+                                      
+                                    required
+                                    className=" py-2 px-3 bg-white border"
+                                    onChange={(e) => setEmail(e.target.value)} />
+                            </div>
+
+                            <div className="form-control my-3">
+                                <label className="label">
+                                    <span className="label-text   text-black " style={{ fontSize: "14px" }}>Your Phone Number </span>
+                                </label>
+                                <input type="phone" name="phone"
+                                    placeholder="Your Phone Number"
+                                  required
+                                    className=" py-2 px-3 bg-white border"
+                                    onChange={(e) => setPhone(e.target.value)} />
+                            </div>
 
                             <div className="form-control mt-6">
-                                <button className="px-3 py-2 text-white font-semibold bg-orange-500 w-[150px] rounded-sm" >Submit</button>
-
+                                <button type="submit" className=" 
+    text-white bg-orange-500 w-full rounded-md py-2 
+   font-semibold hover:bg-orange-600 hover:text-zinc-800">
+                                    SEND YOUR ORDER</button>
                             </div>
-                            <div className="form-control mt-6">
-                                {/* <button onClick={handleGooglelogin}className="px-3 py-2 text-white font-semibold" style={{backgroundColor:"#ed1d24"}}>Google sign in</button> */}
 
-                            </div>
+
                         </form>
+    
+
                     </div>
 
                 </div>

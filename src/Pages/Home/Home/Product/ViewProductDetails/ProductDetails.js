@@ -2,6 +2,7 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { useCart } from "../../../../../Context/CartProvider/Cart";
 import { useNavigate } from "react-router-dom";
+import CreateReview from "../../ReviewSection/CreateReview";
 
 
 
@@ -61,7 +62,9 @@ const ProductDetails=({product})=>{
 
 
   </div>
-         
+         <div>
+          <CreateReview/>
+         </div>
         </div>
     )
 }
