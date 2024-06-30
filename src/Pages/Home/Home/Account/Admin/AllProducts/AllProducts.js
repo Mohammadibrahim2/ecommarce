@@ -24,22 +24,23 @@ const getProduct= async()=>{
  }
 }
 
-// const handleDelete=(id)=>{
+const handleDelete=(id)=>{
 
-// if (window.confirm(`Are you sure to delete this  product?`) == true) {
-// fetch(`http://localhost:8000/product/${id}`,{
-// method:"DELETE"
-// })
-// .then(res=>res.json())
-// .then(data=>{
-// toast.success(data?.message)
-// refetch()
-// })
+if (window.confirm(`Are you sure to delete this  product?`) == true) {
+fetch(`http://localhost:8000/product/delete-product/${id}`,{
+method:"DELETE"
+})
+.then(res=>res.json())
+.then(data=>{
+toast.success(data?.message)
+
+})
 
 
-// } else {
-// return
-// }
+}
+
+}
+ 
 
 
 
@@ -102,26 +103,17 @@ const getProduct= async()=>{
                 </td>
                 <td  > 
                   <button className=" text-xl font-semibold"
-                    style={{color:"red"}} ><MdDeleteSweep/></button>
+                    style={{color:"red"}}
+                    onClick={()=>handleDelete(p?._id)}
+                     ><MdDeleteSweep/></button>
                 </td>
               </tr>)
         }
    
-    {/*  onClick={()=>handleDelete(p?._id)} */}
-      {/* row 2 */}
+     
       
     </tbody>
-    {/* foot */}
-    {/* <tfoot>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      
-      </tr>
-    </tfoot> */}
-    
+   
   </table>
 </div>
     )

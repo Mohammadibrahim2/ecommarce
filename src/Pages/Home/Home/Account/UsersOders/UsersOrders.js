@@ -1,17 +1,19 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { RiEdit2Fill } from "react-icons/ri";
 import { MdDeleteSweep } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../../Context/AuthProvider/AuthProvider";
+import moment from "moment/moment";
+import { useCart } from "../../../../../Context/CartProvider/Cart";
 
 const UsersOrders = () => {
 
   const { user, setUser } = useContext(AuthContext)
   const [orders, setOrders] = useState({})
-
-
+  const [cart, setCart] = useCart()
+const navigate=useNavigate()
 
   useEffect(() => {
     getOrders()
@@ -30,20 +32,30 @@ const UsersOrders = () => {
 
 
   //delete Odrers:
-  // const handleDeleteOrder=async(id)=>{
-  //     console.log(id)
-  //     const {deleteddata}= await axios.delete(`http://localhost:8000/order/:${id}`)
-  //   if(deleteddata){
-  //     toast.success("SuccessFully delete the odrer")
-  //   }
+  const handleDeleteOrder=async(id)=>{
+      try{
+        const {data}= await axios.delete(`http://localhost:8000/order/delete-order/${id}`)
+        if(data?.success){
+          toast.success(data?.message)
+         if(data?.success){
+          localStorage.removeItem("cart")
+          setCart([]);
+        navigate("/")
+         }
+        }
+      }
+      catch(err){
+        console.log(err)
+      }
+     
 
-  // }
+  }
   return (
     <div className="">
-      <h1>payment okay page Order Details</h1>
+      <h1 className="text-xl font-semibold"> Your Order Details</h1>
       {
         orders ? <> <div className="px-10 py-5  text-black">  <h1>
-          {/* //{orders.countOrders} */}
+          {orders?.products?.length}
         </h1></div>
 
           <table className="table border text-black">
@@ -53,11 +65,12 @@ const UsersOrders = () => {
               <tr className=" text-xl  ">
 
                 <th>#</th>
-                <th>Image</th>
-
                 <th>Buyer</th>
-                <th>Status</th>
+
+                
+                <th>Date</th>
                 <th>Total Price</th>
+                <th>Payment Satus</th>
 
                 <th>Delete</th>
 
@@ -66,36 +79,38 @@ const UsersOrders = () => {
             </thead>
             <tbody className="text-black font-semibold">
               <tr>
+                <td>{orders?.length}</td>
                 <td> {orders?.buyer?.firstName}</td>
+                <td> {moment(orders?.createdAt).fromNow()}</td>
+               
                 <td> {orders?.totalAmount}</td>
-                <td> {orders?.paymetStatus? "true":"false"}</td>
-                <td> {orders?.buyer?.firstName}</td>
+                <td> {orders?.paymetStatus? "Success":"Cancel"}</td>
+                <td  >
+                    <button className=" text-xl font-semibold text-white px-2 rounded-sm "
+                      onClick={()=>handleDeleteOrder(orders?._id)}
+                      style={{ backgroundColor: "red" }}
+                    >Remove</button>
+                  </td>
               </tr>
 
 
               {/* row */}
 
               {
-                orders?.products?.map(o => <tr>
+                orders?.products?.map(p => <tr>
 
                   <td>
 
                   </td>
-                  <td>
-
-                    <h1> fhaikjhfkjhadfaf</h1>
-
-
-
-                  </td>
-                  <td>
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={`http://localhost:8000/product/product-photo/${o?.products?._id}`}
-                        alt="Products Image" />
+                
+                  <td className="h-10">
+                    <div className="mask mask-squircle w-32 h-32 ">
+                      <img src={`http://localhost:8000/product/product-photo/${p?._id}`}
+                        alt="Products Image"  className="w-full h-full "/>
                     </div>
                   </td>
                   <td >
-                    <span className="capitalize ">{o?.name} </span>
+                    <span className="capitalize ">{p?.name} </span>
                   </td>
                   {/* <td>{o?.status}</td>
                               <td>
@@ -107,12 +122,7 @@ const UsersOrders = () => {
                         style={{ color: "green" }}
                       ><RiEdit2Fill /></button></Link>
                   </td>
-                  <td  >
-                    <button className=" text-xl font-semibold "
-                      // onClick={()=>handleDeleteOrder(o?._id)}
-                      style={{ color: "red" }}
-                    ><MdDeleteSweep /></button>
-                  </td>
+                 
                 </tr>)
               }
 

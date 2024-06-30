@@ -2,14 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
+import toast from "react-hot-toast";
+import { useCart } from "../../../../../Context/CartProvider/Cart";
 
 const  ViewSingleProduct=()=>{
+
+  const [cart, setCart] = useCart()
     const params=useParams()
     const navigate=useNavigate()
     console.log(params)
     const [product,setProduct]=useState({})
     const [products,setProducts]=useState([])
     console.log(products)
+    
     useEffect(()=>{
         if(params?.id) getProduct()
     },[params.id])
@@ -49,7 +54,7 @@ const  ViewSingleProduct=()=>{
              {
                  products.map(p=><>
                   <div class="card card-box  bg-white hover:shadow-2xl ">
-        <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{5} % off</h2>
+        <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">Best Deals</h2>
       
 
       
@@ -60,23 +65,27 @@ const  ViewSingleProduct=()=>{
   
     <div class="py-7 px-2 items-center text-center text-black">
       <h2 class=" text-sm font-semibold ">{p?.name}</h2>
-      <div className="flex flex-row justify-around py-3">
-        <span>{p?.price}tk</span>
-        <del className="ml-2">{parseInt(p?.price)+2000}tk</del>
+      <div className="flex flex-col justify-center items-center py-3">
+        <span> Price:{p?.price}tk</span>
+        <span
+        className="my-2">Weight:{p?.quantity}Kg</span>
+      
       </div>
-      <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
+      <div class=" flex flex-row-reverse justify-center font-semibold w-full" >
     
-      <label className="px-3  border border-orange-700 text-orange-500 rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}} 
+      <label className="px-3  border border-orange-700 text-orange-500 rounded-md ml-3" 
+      style={{fontSize:"13px",paddingTop:"4px",paddingBottom:"4px"}} 
 
 onClick={()=>{
-        // setCart([...cart,item])
-        // localStorage.setItem('cart',JSON.stringify([...cart,item]))
-        // toast.success("your product is adding ")
+        setCart([...cart,p])
+        localStorage.setItem('cart',JSON.stringify([...cart,p]))
+        toast.success("your product is adding ")
        }}>Add to cart</label>
        
         <button   
+       onClick={()=>navigate(`/product/${p?._id}`)}
         className="px-2 py bg-orange-600 text-white border rounded-md" 
-        style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}}>Buy Now</button>
+        style={{fontSize:"14px",paddingTop:"4px",paddingBottom:"4px"}}>VeiwDetails</button>
       </div>
     </div>
   </div></>)

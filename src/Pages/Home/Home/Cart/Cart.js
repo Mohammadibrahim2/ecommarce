@@ -1,45 +1,45 @@
 import React, { useContext, useEffect, useState } from "react";
 import SingleCart from "./SingleCart";
 import { useCart } from "../../../../Context/CartProvider/Cart";
-import { Badge } from "antd";
+import { Badge, Select } from "antd";
 import axios from "axios";
 import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
-
+import { Checkbox, Radio } from 'antd';
 import { Link, Navigate } from "react-router-dom";
 
 
 const Cart = () => {
 
     const [cart, setCart] = useCart()
-    const {user,setUser}=useContext(AuthContext)
+    const { user, setUser } = useContext(AuthContext)
     const [ClientToken, setClienttoken] = useState("")
     const [instance, setInstance] = useState("")
     const [loading, setLoading] = useState(false)
-    const[wholePrice,setWholePrice]=useState()
+    const [wholePrice, setWholePrice] = useState(0)
+    const [option,setOption]=useState()
+   
     //total price
     const totalPrice = () => {
         try {
 
-            let total=0
-            cart.map((i)=>{
-             total=total +i.price
-             setWholePrice(total)
+            let total = 0
+            cart.map((i) => {
+                total = total + ((i.quantity) / 1000 * i.price)
+                setWholePrice(total)
             })
-            console.log(total)
-            return total.toLocaleString("en-US",{
-                style:"currency",
-                currency:"USD"
-            })
-           
+            return total
+
         }
+
+
         catch (error) {
             console.log(error)
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         totalPrice()
-    },[])
+    }, [])
     const removeCartItem = (proID) => {
 
         try {
@@ -48,6 +48,7 @@ const Cart = () => {
             myCart.splice(index, 1)
             setCart(myCart)
             localStorage.setItem('cart', JSON.stringify(myCart))
+          totalPrice(myCart)
 
         }
         catch (error) {
@@ -57,31 +58,71 @@ const Cart = () => {
 
     }
     //getway payment getway token
-   
 
 
-    const handlePayment=async(cart,user)=>{
-try{
-    
-    const {data}=await axios.post("http://localhost:8000/product/order",{
-       cart,user
-    })
-    console.log(data.url)
-    window.location.replace(data?.url)
-   
-    
-    
 
-}
-catch(err){
-    console.log(err)
-    setLoading(false)
+    const handlePayment = async (cart, user) => {
+        try {
 
-}
+            const { data } = await axios.post("http://localhost:8000/product/order", {
+                cart, user,wholePrice
+            })
+            console.log(data.url)
+            window.location.replace(data?.url)
 
+
+
+
+        }
+        catch (err) {
+            console.log(err)
+            setLoading(false)
+
+        }
 
 
     }
+
+    const handleDecrement = async (id) => {
+        try {
+            setCart(cart =>
+                cart.map((item) =>
+                    id === item._id ? { ...item, quantity: item.quantity - (item.quantity > 1000 ? 1000 : 0) } : item
+                ))
+            totalPrice(cart)
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+    }
+    const handleIncrement = async (id) => {
+        try {
+            setCart(cart =>
+                cart.map((item) =>
+                    id === item._id ? { ...item, quantity: item.quantity + (item.quantity < 15000 ? 1000 : 0) } : item
+                ))
+
+            totalPrice(cart)
+        
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    const checkout = [
+        {
+            name: "Cash on delivery",
+            id:1
+        },
+        {
+            name: "Onlie Payment",
+            id:2
+        }
+    ]
     return (
         <div className="w-full grid lg:grid-cols-3 grid-cols-1 gap-3 mt-5 pt-16 ">
 
@@ -93,8 +134,12 @@ catch(err){
                 </div>
 
                 {cart &&
-                    cart?.map(product => <SingleCart product={product} removeCartItem={removeCartItem}
-                        key={product?._id} />)
+                    cart?.map(product =>
+                        <SingleCart product={product}
+                            removeCartItem={removeCartItem}
+                            handleIncrement={handleIncrement}
+                            handleDecrement={handleDecrement}
+                            key={product?._id} />)
                 }
             </div>
             <div className="border border-1 rounded-md  h-auto mb-4 ">
@@ -115,32 +160,54 @@ catch(err){
                     </div>
                 </div>
                 <div className="text-center py-3">
-                 <h3 className=" text-orange-500  font-semibold">{user?
-                    <span> { user?.email}</span>:
-                    <div>  <li className="flex flex-row justify-center items-center  cursor-pointer" htmlFor="registerModal"/>
-                    Please   
-    <label  htmlFor="registerModal" className="mr-2 text-black my-2" >    log in</label>
-    to checkout
-                    </div>}
-                     </h3>
-               
+                    <h3 className=" text-orange-500  font-semibold">{user ?
+                        <><span> {user?.email}
+
+                        </span>
+                            <div className="text-center py-3">
+                                <div className="category flex flex-col  my-4 ">
+                                    {
+                                      checkout.map(c =>
+                                            <Checkbox key={c?.id}
+                                                className="mt-2 ml-2 font-semibold"
+                                                onChange={(e) =>setOption(e.target.name==="cashOn"?true:false)
+                                                }
+                                                >
+                                                {c?.name}
+
+                                            </Checkbox>)
+                                    }
+
+
+                                </div>
+                                
+                                <button className="py-2 px-14 bg-orange-500 text-white font-semibold "
+                                style={{ fontSize: "15px" }}
+                                onClick={() => handlePayment(cart, user)}
+
+                            >Make Payment</button>
+
+
+                            </div></> :
+                        <div>  <li className="flex flex-row justify-center items-center  cursor-pointer" htmlFor="registerModal" />
+                            Please
+                            <label htmlFor="registerModal" className="mr-2 text-black my-2" >    log in</label>
+                            to checkout
+
+                        </div>
+                    }
+                    </h3>
+
 
                 </div>
 
-                <div className="payment w-full h-[500px]  mt-4">
-                <div className="text-center py-3">
-                    <button className="py-2 px-14 bg-orange-500 rounded-md text-white font-semibold shadow-lg"
-                      style={{ fontSize: "15px" }}
-                      onClick={()=>handlePayment(cart,user)}
-                      
-                      >Make payment</button>
+                <div className="payment w-full h-auto  mt-4">
+
 
                 </div>
-              
-            </div>
 
             </div>
-           
+
         </div>
     )
 }

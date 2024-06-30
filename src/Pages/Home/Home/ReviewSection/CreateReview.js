@@ -5,45 +5,42 @@ import { RiLoginBoxFill } from "react-icons/ri"
 
 import axios from "axios";
 import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
-const CreateReview = () => {
+import toast from "react-hot-toast";
+const CreateReview = ({product}) => {
     const {toggle,setToggle,user,setUser,loading,setLoading}=useContext(AuthContext)
     const [isModalOpen, setIsModalOpen] = useState(false);
-   
-    const [data, setData] = useState()
-
-    const [name, setName] = useState('')
     const [description,  setDescription] = useState('')
     const [photo, setPhoto] = useState('')
 
-    
-    const [userName, setUserName] = useState('')
-
-    const testUser={_id:"875875858765675675"}
+  
+ 
+ 
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const productData = new FormData()
-            productData.append("name", name)
+           
 
-            productData.append("photo", photo)
-            productData.append("userName", userName)
+            productData.append("user", user?._id)
+            productData.append("products", product?._id)
+            productData.append("description",description)
           
 
-            console.log({ userName, photo,description})
-            // console.log({productData})
-            //   const {data}=await axios.post('http://localhost:8000/preOrder/create-preOrder',productData)
+           
+        
+              const {data}=await axios.post('http://localhost:8000/review/create-review',productData)
 
-            //     if(data?.success){
-            //         // navigate("/")
-            //         toast.success(data?.message)
-            //         console.log(data?.message)
+                if(data?.success){
+                    // navigate("/")
+                    toast.success(data?.message)
+                    console.log(data?.message)
 
-            //     }
-            //     else{
-            //         toast.error(data?.message)
-            //     }
+                }
+                else{
+                    toast.error(data?.message)
+                }
 
         }
         catch (error) {
@@ -66,34 +63,7 @@ const CreateReview = () => {
 
 
                     <div className="  lg:w-1/2 md:w-2/3 w-full">
-                        {testUser?._id ?<><form className="px-8 py-8  border w-full" onSubmit={handleSubmit}>
-
-
-{/* 
-
-<div className="form-control my-4">
-    <label className="label">
-        <span className="label-text   text-black " style={{ fontSize: "14px" }}>!!!!!! </span>
-    </label>
-    <input type="name" name="name"
-        placeholder="Product Info"
-        className=" py-2 px-3 bg-white border "
-        onChange={(e) => setName(e.target.value)} />
-</div> */}
-
-
-<div className="form-control  text-black overflow-hidden  my-2">
-    <label className="label">
-        <span className="btn btn-outline-primary w-full  text-black "
-            style={{ fontSize: "14px" }}>{photo ? photo.name : "Upload Photo"}</span>
-        <input type="file"
-            name="photo"
-            accept="image/*"
-            onChange={(e) => setPhoto(e.target.files[0])} className="w-full py-2 px-3  border hidden  " />
-    </label>
-
-
-</div>
+                        {user?._id ?<><form className="px-8 py-8  border w-full" onSubmit={handleSubmit}>
 
 
 <div className="form-control my-2">
@@ -101,10 +71,11 @@ const CreateReview = () => {
         <span className="label-text   text-black " style={{ fontSize: "14px" }}>Your Name </span>
     </label>
     <input type="userName" name="userName"
+    defaultValue={user?.firstName}
         placeholder="Your Name"
         required
         className=" py-2 px-3 bg-white border "
-        onChange={(e) => setUserName(e.target.value)} />
+         />
 </div>
 <div className="form-control my-2">
     <label className="label">

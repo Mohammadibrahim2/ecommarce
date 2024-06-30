@@ -11,7 +11,7 @@ import { HiOutlineX } from "react-icons/hi";
 import { FaBars } from 'react-icons/fa'
 
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../../../assetes/logo-2.png"
+// import logo from "../../../../assetes/logo-2.png"
 
 import "./Navbar.css"
 import axios from 'axios';

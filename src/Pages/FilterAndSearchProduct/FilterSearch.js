@@ -6,6 +6,7 @@ import { useCart } from "../../Context/CartProvider/Cart";
 import { toast } from "react-hot-toast";
 import { Prices } from "../Component/Price/Prices";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 const FilterAndSearchProduct = () => {
   // const categories=useCategory()
   const [products, setProducts] = useState([])
@@ -15,7 +16,7 @@ const FilterAndSearchProduct = () => {
   const [radio, setRadio] = useState([])
   const [dropDown, setDropDown] = useState([])
   const [subId,setsubId]=useState([])
-
+const navigate=useNavigate()
 const {sub}=useContext(AuthContext)
 
 console.log(subId)
@@ -158,7 +159,7 @@ console.log(subId)
             {
               products.map(item => <div class="card card-box  bg-white hover:shadow-2xl " key={products?._id}>
                 <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{5} % off</h2>
-                <figure class="px-10 pt-10">
+                <figure class="px-10 pt-10" onClick={()=>navigate(`/product/${item._id}`)}>
                 <img src={`http://localhost:8000/product/product-photo/${item?._id}`} 
                     alt="Shoes" className="w-full h-full" />
                 </figure>

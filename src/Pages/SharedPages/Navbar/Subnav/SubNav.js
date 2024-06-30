@@ -10,27 +10,27 @@ import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
 
 import "./Subnav.css"
 
-import useSubCategory from "../../../../hooks/useSubCategory";
+// import useSubCategory from "../../../../hooks/useSubCategory";
 import useCategory from "../../../../hooks/useCategory";
 import SingleCategory from "./SingleCategory";
 
 
 const SubNav = () => {
 
-    const subcategories = useSubCategory()
+    // const subcategories = useSubCategory()
     const categories = useCategory()
     
     const[selectedsubcat,setselectedsubcat]=useState([])
 const handlesubcat=(id)=>{
     const arraysub=[...selectedsubcat]
     console.log(id)
-    if(id===subcategories?.categoy?._id) setselectedsubcat(id)
-    console.log(arraysub)
+    // if(id===subcategories?.categoy?._id) setselectedsubcat(id)
+    // console.log(arraysub)
 
 }
  
 
-    console.log(subcategories)
+    // console.log(subcategories)
 
     const { toggle, setToggle } = useContext(AuthContext)
     const onChange = (value) => {

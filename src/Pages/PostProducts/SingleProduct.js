@@ -14,9 +14,12 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
     const [data,setData]=useState( )
 
     const [categories, setCategories] = useState([])
+    const [featuredCategories, setFeaturedCategories] = useState([])
     const [category, setCategory] = useState('')
+    const [featuredCategory, setFeaturedCategory] = useState('')
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
+    const [quantity, setQuantity] = useState('')
     const [brand, setBrand] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
@@ -39,6 +42,25 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 useEffect(() => {
     getAllCategories()
 }, []);
+//get all featured categories
+ const getAllFeaturedCategories = async () => {
+    try {
+        const { data } = await axios.get("http://localhost:8000/featured-catagory/get-fetured-categories")
+        if (data?.success) {
+            setFeaturedCategories(data?.fcategories)
+        }
+    }
+    catch (error) {
+        console.log(error)
+    }
+
+}
+
+useEffect(() => {
+    getAllFeaturedCategories()
+}, []);
+
+
 
 //posting product to server:-
 const handleSubmit = async (e) => {
@@ -52,8 +74,10 @@ const handleSubmit = async (e) => {
     productData.append("price", price)
     productData.append("photo", photo)
     productData.append("category", category)
+    productData.append("featuredCategory", featuredCategory)
     productData.append("description", description)
     productData.append("brand", brand)
+    productData.append("quantity",quantity)
 
     // console.log({ name, photo,  description, category,price })
     // console.log({productData})
@@ -131,6 +155,16 @@ const handleSubmit = async (e) => {
         onChange={(e) => setBrand(e.target.value)} />
 
 </div>
+<div className="form-control  text-black ">
+    <label className="label">
+        <span className="label-text  text-black " style={{ fontSize: "14px" }}>Quantity </span>
+    </label>
+    <input type="number" name="quantity"
+        required placeholder="quantity"
+        className=" py-2 px-3 bg-white border  "
+        onChange={(e) => setQuantity(e.target.value)} />
+
+</div>
     <label className="label">
         <span className="label-text  text-black " style={{ fontSize: "14px" }}>Description</span>
     </label>
@@ -153,6 +187,29 @@ const handleSubmit = async (e) => {
         className=" py-2 px-3 bg-white border  ">
         {
             categories?.map((c) => (
+                <Option key={c?._id}
+                 value={c?._id} >
+                 {c?.name}
+                </Option>
+            ))
+        }
+
+
+    </Select>
+
+</div>
+<div className="form-control  text-black ">
+    <label className="label">
+        <span className="label-text  text-black " style={{ fontSize: "14px" }}> Featured Category</span>
+    </label>
+    <Select type="featuredCategories" name="featuredCategories"
+        showSearch
+        onChange={(value) => setFeaturedCategory(value)}
+        bordered={false}
+        placeholder="Select a Featured Category"
+        className=" py-2 px-3 bg-white border  ">
+        {
+           featuredCategories?.map((c) => (
                 <Option key={c?._id}
                  value={c?._id} >
                  {c?.name}

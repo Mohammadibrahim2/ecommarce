@@ -33,9 +33,15 @@ const Account = () => {
         },
         {
             id: 3,
-            title: "Change Password",
+            title: "Create Category",
             icon: <BsKey />,
-            link: "change-password"
+            link: "create-category"
+        },
+        {
+            id: 9,
+            title: "Create Featured Category",
+            icon: <BsKey />,
+            link: "create-featured-category"
         },
         {
             id: 4,

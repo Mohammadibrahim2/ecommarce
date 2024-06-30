@@ -16,7 +16,7 @@ const SingleProduct=({item,setSelectedItems, orderedItems})=>{
     return(
         
         <div class="card card-box  bg-white hover:shadow-2xl ">
-        <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{5} % off</h2>
+        <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">Fresh</h2>
       
 
       
@@ -29,11 +29,13 @@ const SingleProduct=({item,setSelectedItems, orderedItems})=>{
       <h2 class=" text-sm font-semibold ">{item?.name}</h2>
       <div className="flex flex-row justify-around py-3">
         <span>{item?.price}tk</span>
-        <del className="ml-2">{parseInt(item?.price)}tk</del>
+        <span className="ml-2">{parseInt(item?.quantity/1000)}kg</span>
       </div>
-      <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
-      <h1>{item?.category?.name}</h1>
-      <label className="px-3  border border-orange-700 text-orange-500 rounded-md" style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}} 
+      {/* <h1>{item?.category?.name}</h1> */}
+      <div class="font-semibold w-full" >
+     
+      <label className="px-3  py bg-orange-600 text-white border rounded-md     " 
+      style={{fontSize:"12px",paddingTop:"4px",paddingBottom:"4px"}} 
 
 onClick={()=>{
         setCart([...cart,item])
@@ -41,9 +43,9 @@ onClick={()=>{
         toast.success("your product is adding ")
        }}>Add to cart</label>
        
-        <button   
-        className="px-2 py bg-orange-600 text-white border rounded-md" 
-        style={{fontSize:"10px",paddingTop:"4px",paddingBottom:"4px"}}>Buy Now</button>
+        <button   onClick={()=>navigate(`/product/${item._id}`)}
+        className="px-2 border border-orange-700 text-orange-500 rounded-md" 
+        style={{fontSize:"12px",paddingTop:"4px",paddingBottom:"4px"}}>View details</button>
       </div>
     </div>
   </div>

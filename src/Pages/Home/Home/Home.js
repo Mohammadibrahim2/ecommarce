@@ -10,6 +10,8 @@ import Blog from "../../../Blog/Blog";
 import PostData from "../../../AccountLayout/PostData";
 import CreateReview from "./ReviewSection/CreateReview";
 import OpenMobileModal from "../../SharedPages/Navbar/Navbar/SearchModal/MobileViewModel";
+import ScrollToTop from "react-scroll-to-top";
+import Service from "./Service/Service";
 
 
 
@@ -18,7 +20,10 @@ const Home=()=>{
         <div className="text-oranger-500">
 
             <Header></Header>
-            
+            <ScrollToTop smooth top="90" color="#FFFFFF" 
+             style={{backgroundColor:"#FF5A01" ,padding:"5px",fontWeight:"700"}}>
+   
+            </ScrollToTop>
          
             <PostData></PostData>
            
@@ -29,7 +34,7 @@ const Home=()=>{
             <TopBrandProducts></TopBrandProducts>
             <Bannar1></Bannar1>
             <ShopByBrands></ShopByBrands>
-            <CreateReview/>
+           <Service/>
             <Blog></Blog>
         </div>
     )

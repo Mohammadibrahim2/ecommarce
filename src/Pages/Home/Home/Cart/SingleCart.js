@@ -1,7 +1,7 @@
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useCart } from "../../../../Context/CartProvider/Cart";
-const SingleCart = ({ product ,removeCartItem}) => {
+const SingleCart = ({ product ,removeCartItem,handleIncrement,handleDecrement}) => {
     
     
    
@@ -11,11 +11,13 @@ const SingleCart = ({ product ,removeCartItem}) => {
                 <div className="item flex flex-row justify-around w-1/2">
                     <div className="img-quantity flex flex-col justify-center items-center" >
                     <img src={`http://localhost:8000/product/product-photo/${product?._id}`} 
-                    alt="Shoes" className="w-1/2 h-1/2" />
-                        <div className="text-black font-semibold flex flex-row">
-                            <button className="px-2 py border border-1 bg-zinc-100">-</button>
-                            <button className="px-4 py border border-1 bg-zinc-300">10</button>
-                            <button className="py px-2 border border-1 bg-zinc-100">+</button>
+                    alt="Shoes" className="w-[150px] h-1/2 object-fill" />
+                        <div className="text-black font-semibold flex flex-row my-2">
+                            <button className="px-2 py border border-1 bg-zinc-100 text-2xl font-bold"
+                             onClick={()=>handleDecrement(product?._id)} >-</button>
+                            <button className="px-4 py border border-1 bg-zinc-300">{product?.quantity/1000}kg</button>
+                            <button className="py px-2 border border-1 bg-zinc-100 text-2xl font-bold"
+                            onClick={()=>handleIncrement(product?._id)}>+</button>
                         </div>
 
                     </div>

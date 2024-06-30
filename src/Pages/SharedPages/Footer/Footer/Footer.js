@@ -1,123 +1,91 @@
 import React from "react";
-import {IoLocationSharp ,IoCall} from "react-icons/io5";
-import facebook from "../../../../assetes/facebook.jpg"
-import instagram from "../../../../assetes/instagram.png"
-import youtube from "../../../../assetes/youtube.jpg"
-import linkdin from "../../../../assetes/linkdin.png"
-import "./Footer.css"
-const Footer=()=>{
+import { Link } from "react-router-dom";
+import NewsLetter from "../../../Home/Home/News/NewsLetter";
+import {FaFacebookSquare,FaTwitter,FaLinkedinIn} from "react-icons/fa";
+import {TfiYoutube} from "react-icons/tfi"
+import bkash from "../../../../assetes/bikah.png"
+import nagad from "../../../../assetes/nagad.png"
+import rocket from "../../../../assetes/rocket.png"
+import upay from "../../../../assetes/upay.jpg"
+import ssl2 from "../../../../assetes/ssl-2.png"
+const Footer = () => {
 
-    const list=[
-        {
-            name:"About",
-        },
-        {
-            name:"Home",
-        },
-        {
-            name:"Contact",
-        },
-        {
-            name:"trams & condition",
-        },
-             
+    return (
+        <div className="w-full lg:h-[70vh] text-white flex flex-col justify-end bg-zinc-950 relative mt-12 lg:mt-10" style={{ fontSize: "14px" }}>
+            <NewsLetter></NewsLetter>
 
-    ]
+            <div className="flex lg:flex-row lg:justify-around  lg:items-end flex-col justify-around items-start lg:pb-5 px-4 w-[99%] mx-full mt-32 ">
+                <div className="firts-f-section text-start leading-10 text-gray-300">
 
-    const socialIcons=[
-        {
-            id:1,
-            img:facebook,
-            url:""
-        },
-        {
-            id:2,
-            img:instagram
-        },
-        {
-            id:3,
-            img:youtube
-        },
-        {
-            id:4,
-            img:linkdin
-        },
-
-    ]
-    return(
-        <div className="bg-zinc-900 text-white ">
-            <div className="flex lg:flex-row flex-col justify-around items-center py-20">
-                <div>
-                    
-                    <h1 className="text-orange-600 font-semibold  py-2 text-md mt-4 text-center">SUPPORT</h1>
-                    <div className="">
-                       
-                        <div className=" flex flex-row justify-start items-center  px-4 py-2  my-3">
-                        <span className="pr-4 text-xl"><IoCall/></span>|
-                        <div className="pl-2">
-                            <h1>01632846454</h1>
-
-                        <h1 >01846579945</h1>
-
-                        </div>
-                       
-                     
-                        </div>
-                        <div className=" flex flex-row justify-center items-center  px-4 py-2  my-3">
-                        <span className="pr-4 text-xl"><IoLocationSharp/></span>|
-                        <div className="pl-2">
-                            <h2 style={{fontSize:"13px"}}>Location</h2>
-
-                        <h1 >Powro Bazar,Maijdee,Noakhali</h1>
-
-                        </div>
-                       
-                     
-                        </div>
+                    <h2 className="text-2xl font-bold font-sans text-white">CONTACT INFOMATION</h2>
+                    <p>Call Us 24/7 Free</p>
+                    <h2 className="text-2xl text-extrabold text-orange-600 " >+88 01632-846454</h2>
+                    <h2 className="text-2xl text-extrabold   text-orange-600" >+88 01846-579945</h2>
+                    <h2 >Adress: Powro bazar,Maijdee Noakhali</h2>
+                    <h2 >Email: fishnfry784@gmail.com</h2>
+                    <div className="text-white flex flex-row justify-around items-start  w-[90%] text-xl my-2">
+                       <a href="https://web.facebook.com/profile.php?id=61560239125347"> <FaFacebookSquare  /></a>
+                        <FaTwitter />
+                        <FaLinkedinIn />
+                        <TfiYoutube />
                     </div>
-                    <div className="social-icons w-full flex flex-row justify-center ">
-                        {
-                            socialIcons.map(icon=>
-                                <img src={icon.img} className="w-[30px] bg-white mx-3 rounded-sm social-icons"></img>)
-                        }
+
+                </div>
+                {/* end first-sectiojn:- */}
+                <div className="second-f-section text-gray-300">
+                    <h1 className="text-xl font-semibold text-white">Information</h1>
+                    <div className="list-none text-start leading-8">
+                        <li>Delevary</li>
+                        <li>About US</li>
+                      <Link to="/contact"><li>Contact US</li></Link>
+                        <li>Stores</li>
+                        <li>Secure Payment</li>
                     </div>
-                </div>
-                <div className="my-2 lg:my-0">
-                    <h1 className="text-orange-600 text-center lg:text-start ">About Us</h1>
-                    <li className="list-none flex flex-col items-center lg:items-start">{list.map(li=>
-                        <a>{li.name}</a>)}</li>
-                </div>
-
-                <div className="my-2 lg:my-0">
-                <h1 className="text-orange-600 lg:text-start text-center">Help</h1>
-
-                <li className="list-none flex flex-col  items-center lg:items-start">{list.map(li=>
-                        <a>{li.name}</a>)}</li>
 
                 </div>
-
-                <div className="my-2 lg:my-0">
-                <h1 className="text-orange-600 text-center lg:text-start">Stay Connected</h1>
-
-                <li className="list-none flex flex-col items-center lg:items-start">{list.map(li=>
-                        <a>{li.name}</a>)}</li>
-                
+                {/* end second-sectiojn:- */}
+                <div className="third-f-section text-gray-300">
+                    <h1 className="text-xl font-semibold text-white">Custom Links</h1>
+                    <div className="text-start list-none leading-8">
 
 
-                
+                        <Link to="/wishlist"><li className="hover:text-red-600">Wishlist</li> </Link>
+                        <Link to="/cart"><li className="hover:text-red-600">My Cart</li> </Link>
+
+
+                        <Link to="/shop"><li className="hover:text-red-600">Shop</li></Link>
+                        <Link to="/blog"><li className="hover:text-red-600">Blog</li></Link>
+                        <Link to="/contact"><li className="hover:text-red-600">Contact Us</li></Link>
+                    </div>
+
+
+                </div>
+
+
+                <div className="third-f-section lg:mt-0 mt-2">
+                    <h1 className="text-xl font-semibold lg:text-center text-start ">Our Location</h1>
+                    <img src="https://i.ibb.co/c8tV7Kt/location.webp" className="h-[170px] w-auto py-2"></img>
+
 
                 </div>
 
 
 
             </div>
-            <div className="bg-black text-white text-center py-3 " style={{fontSize:"13px"}}>
-                <h1>© 2024 Thanks From Ecommarce Ltd. | All rights reserved</h1>
 
+            <div className="flex lg:flex-row flex-col justify-between w-full lg:items-end items-start py-5 px-5 bg-zinc-800 mb-16 lg:mb-0">
+                <h2 className="lg:mb-0 mb-2">copyrigth by <span className=" text-orange-600 " > FISHnFRY</span> , 2024</h2>
+                <div className="flex flex-row lg:w-1/3 w-full ">
+                    <img src={bkash} className="w-[80px] h-[30px] bg-white p-1 "></img>
+                    <img src={nagad} className="w-[80px]  h-[30px] mx-3"></img>
+                    <img src={rocket} className="w-[80px]  h-[30px]"></img>
+                    <img src={upay} className="w-[80px]  h-[30px] mx-3"></img>
+                    <img src={ssl2} className="w-[80px]  h-[30px] mx-3"></img>
+                </div>
             </div>
-
         </div>
     )
-}
 
+
+}
 export default Footer

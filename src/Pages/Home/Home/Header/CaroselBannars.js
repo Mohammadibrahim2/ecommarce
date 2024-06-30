@@ -4,8 +4,11 @@ import { HiOutlineArrowLongRight, HiOutlineArrowLongLeft } from "react-icons/hi2
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bannar1 from "../../../../assetes/heaphone-1000.jpg"
-import bannar2 from "../../../../assetes/bannar-1000.jpg"
+import bannar1 from "../../../../assetes/fishbannar.jpg"
+import bannar2 from "../../../../assetes/fishbannar2.jpg"
+import bannar3 from "../../../../assetes/fishbannar.jpg"
+import bannar4 from "../../../../assetes/fishbannar2.jpg"
+
 // import "./BannarItem.css";
 import { IoIosArrowForward } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
@@ -13,7 +16,12 @@ import { Link } from "react-router-dom";
 import "../../../../App.css"
 const CaroselBannarItem = () => {
 
-
+    const bannar=[
+        {img:bannar1},
+        {img:bannar2},
+        {img:bannar3},
+        {img:bannar4}
+    ]
 
     const SampleNextArrow = (props) => {
         const { className, style, onClick } = props;
@@ -93,7 +101,7 @@ const CaroselBannarItem = () => {
 
 
                 {
-                    slides.map(slide =>
+                  bannar.map(slide =>
                         <div className={`flex flex-row  h-full text-black `}>
 
                             <div className="flex flex-row   h-full">

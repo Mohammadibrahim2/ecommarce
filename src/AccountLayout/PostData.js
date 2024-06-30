@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import { Link } from "react-router-dom";
-import  pic  from "../assetes/logo-1.png"
+// import  pic  from "../assetes/logo-1.png"
 import { FiX } from "react-icons/fi";
 import { AuthContext } from "../Context/AuthProvider/AuthProvider";
 
@@ -20,10 +20,10 @@ const PostData=()=>{
   <div className="modal-box  rounded-sm  " >
 
   <div className="modal-action p-0">
-
+{/* 
  <div className="w-full mx auto">
   <img src={pic} className="w-[300px] mx-auto"></img>
- </div>
+ </div> */}
  <div>
  <label htmlFor="registerModal" className="text-black text-2xl "><FiX/></label>
  </div>

@@ -10,6 +10,8 @@
 
 # production
 /build
+#nodemodule
+/node_modules
 
 # misc
 .DS_Store

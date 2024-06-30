@@ -23,6 +23,8 @@ import ViewSingleProduct from "../../Home/Home/Product/ViewProductDetails/ViewSi
 import AllUsers from "../../Home/Home/Account/Admin/Allusers/AllUsers";
 import AllProducts from "../../Home/Home/Account/Admin/AllProducts/AllProducts";
 import UsersOrders from "../../Home/Home/Account/UsersOders/UsersOrders";
+import CreateCategory from "../../Home/Home/CreateCategory/CreateCategory";
+import Contact from "../../Home/Home/Contact/ContactUs";
 // import AllOrders from "../../Home/Home/Account/Admin/AllOrders/AllOrders";
 
 
@@ -71,6 +73,11 @@ export const router=createBrowserRouter([
             {
                 path:"/category/:slug",
                 element:<CategoryProducts></CategoryProducts>
+
+            },
+            {
+                path:"/contact",
+                element:<Contact/>
 
             },
             {
@@ -127,8 +134,8 @@ export const router=createBrowserRouter([
 
             },
             {
-                path:"/dashboard/change-password",
-                element:<ChangePassword></ChangePassword>
+                path:"/dashboard/create-category",
+                element:<CreateCategory/>
 
             },
 

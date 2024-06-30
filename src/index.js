@@ -17,13 +17,11 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <SearchProvider>
-        {/* <SubCategoryProvider> */}
           <CartProvider>
             <AuthProvider>
               <App />
             </AuthProvider>
           </CartProvider>
-        {/* </SubCategoryProvider> */}
       </SearchProvider>
     </QueryClientProvider>
   </React.StrictMode>

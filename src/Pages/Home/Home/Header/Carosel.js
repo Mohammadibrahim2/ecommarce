@@ -1,7 +1,15 @@
 import React from 'react';
 import { Carousel } from 'antd';
-import bannar1 from "../../../../assetes/heaphone-1000.jpg"
-import bannar2 from "../../../../assetes/bannar-1000.jpg"
+import bannar1 from "../../../../assetes/bannar-1000 (1).jpg"
+import bannar2 from "../../../../assetes/bannar-2000.jpeg"
+import bannar3 from "../../../../assetes/banner-3000.jfif"
+import bannar4 from "../../../../assetes/banner-4000.jpg"
+const bannar=[
+    {img:bannar1},
+    {img:bannar2},
+    {img:bannar3},
+    {img:bannar4}
+]
 const contentStyle = {
   height: '80vh',
   color: '#fff',
@@ -38,7 +46,7 @@ const CaroselH = () => (
 
  
         {
-            slides.map(item=><div>
+           bannar.map(item=><div>
                 <img src={item.img}></img>
             </div>)
         }
