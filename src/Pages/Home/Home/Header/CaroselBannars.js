@@ -4,10 +4,10 @@ import { HiOutlineArrowLongRight, HiOutlineArrowLongLeft } from "react-icons/hi2
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bannar1 from "../../../../assetes/fishbannar.jpg"
-import bannar2 from "../../../../assetes/fishbannar2.jpg"
-import bannar3 from "../../../../assetes/fishbannar.jpg"
-import bannar4 from "../../../../assetes/fishbannar2.jpg"
+import bannar1 from "../../../../assetes/bannar-100.jpg"
+import bannar2 from "../../../../assetes/bannar-400.jpg"
+import bannar3 from "../../../../assetes/bannar-200.jpg"
+import bannar4 from "../../../../assetes/bannar-300.jpg"
 
 // import "./BannarItem.css";
 import { IoIosArrowForward } from 'react-icons/io';
