@@ -19,7 +19,7 @@ const Search=()=>{
        
             <figure class="px-10 pt-10" 
     onClick={()=>navigate(`/product/${item?._id}`)}>
-       <img src={`http://localhost:8000/product/product-photo/${item?._id}`} alt="Shoes" className="w-full h-full" />
+       <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${item?._id}`} alt="Shoes" className="w-full h-full" />
     </figure>
         <div class="py-7 px-2 items-center text-center text-black">
           <h2 class=" text-sm font-semibold ">{item?.name}</h2>

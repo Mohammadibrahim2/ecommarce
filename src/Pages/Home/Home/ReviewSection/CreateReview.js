@@ -30,7 +30,7 @@ const CreateReview = ({product}) => {
 
            
         
-              const {data}=await axios.post('http://localhost:8000/review/create-review',productData)
+              const {data}=await axios.post('https://updateecommarce-server.vercel.app/review/create-review',productData)
 
                 if(data?.success){
                     // navigate("/")

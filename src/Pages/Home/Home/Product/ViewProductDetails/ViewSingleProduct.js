@@ -21,7 +21,7 @@ const  ViewSingleProduct=()=>{
 
     const getProduct= async()=>{
        try{
-        const {data}=await axios(`http://localhost:8000/product/get-singleproduct/${params.id}`)
+        const {data}=await axios(`https://updateecommarce-server.vercel.app/product/get-singleproduct/${params.id}`)
         setProduct(data?.product)
         getSimilarProduct(data?.product?._id, data?.product?.category?._id)
        }
@@ -32,7 +32,7 @@ const  ViewSingleProduct=()=>{
     //get similar product
     const getSimilarProduct= async(pid,cid)=>{
         try{
-         const {data}=await axios(`http://localhost:8000/product/related-products/${pid}/${cid}`)
+         const {data}=await axios(`https://updateecommarce-server.vercel.app/product/related-products/${pid}/${cid}`)
          setProducts(data?.products)
         }
         catch(error){
@@ -60,7 +60,7 @@ const  ViewSingleProduct=()=>{
       
         <figure class="px-10 pt-10" 
     onClick={()=>navigate(`/product/${p?._id}`)}>
-       <img src={`http://localhost:8000/product/product-photo/${p?._id}`} alt="Shoes" className="w-full h-full" />
+       <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${p?._id}`} alt="Shoes" className="w-full h-full" />
     </figure>
   
     <div class="py-7 px-2 items-center text-center text-black">

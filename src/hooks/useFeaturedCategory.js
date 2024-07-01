@@ -10,7 +10,7 @@ export  default function useFeaturedCategory(){
     const  getfeturedCategories= async()=>{
          try{
 
-            const {data} =await axios.get(`http://localhost:8000/featured-catagory/get-fetured-categories`)
+            const {data} =await axios.get(`https://updateecommarce-server.vercel.app/featured-catagory/get-fetured-categories`)
             setfeaturedCategories(data)
             console.log(data)
          }

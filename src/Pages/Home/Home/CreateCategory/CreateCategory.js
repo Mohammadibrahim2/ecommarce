@@ -18,7 +18,7 @@ const CreateCategory = () => {
         try {
 
             console.log(name)
-            const { data } = await axios.post('http://localhost:8000/category/create-category',{name})
+            const { data } = await axios.post('https://updateecommarce-server.vercel.app/category/create-category',{name})
 
             if (data?.success) {
                

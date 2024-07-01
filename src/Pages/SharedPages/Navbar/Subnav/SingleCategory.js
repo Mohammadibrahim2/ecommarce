@@ -11,7 +11,7 @@ const {sub,setSub}=useContext(AuthContext)
 
     const handlesubcat= async(id)=>{
      
-      const {data}=await axios.get(`http://localhost:5000/subcategory/${id}`)
+      const {data}=await axios.get(`https://updateecommarce-server.vercel.app/subcategory/${id}`)
       
       console.log(data)
       setSub(data?.subcategory)

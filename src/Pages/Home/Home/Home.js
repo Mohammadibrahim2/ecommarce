@@ -12,29 +12,33 @@ import CreateReview from "./ReviewSection/CreateReview";
 import OpenMobileModal from "../../SharedPages/Navbar/Navbar/SearchModal/MobileViewModel";
 import ScrollToTop from "react-scroll-to-top";
 import Service from "./Service/Service";
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 
-
-const Home=()=>{
-    return(
+const Home = () => {
+    return (
         <div className="text-oranger-500">
 
             <Header></Header>
-            <ScrollToTop smooth top="90" color="#FFFFFF" 
-             style={{backgroundColor:"#FF5A01" ,padding:"5px",fontWeight:"700"}}>
-   
+            <ScrollToTop smooth top="90" color="#FFFFFF"
+                style={{ backgroundColor: "#FF5A01", padding: "5px", fontWeight: "700" }}>
+
             </ScrollToTop>
-         
+            <MessengerCustomerChat
+                pageId="314721621727244"
+                appId="<APP_ID>"
+                htmlRef="<REF_STRING>"
+            />,
             <PostData></PostData>
-           
-            <FeatruedCategories/>
-          
+
+            <FeatruedCategories />
+
             <FeaturedProducts ></FeaturedProducts>
             <Bannar2></Bannar2>
             <TopBrandProducts></TopBrandProducts>
             <Bannar1></Bannar1>
             <ShopByBrands></ShopByBrands>
-           <Service/>
+            <Service />
             <Blog></Blog>
         </div>
     )

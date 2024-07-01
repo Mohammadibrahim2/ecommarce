@@ -18,7 +18,7 @@ if(params?.slug) getProductsByCat()
 
     const getProductsByCat= async()=>{
         try{
-            const {data}=await axios.get(`http://localhost:5000/product/product-category/${params.slug}`)
+            const {data}=await axios.get(`https://updateecommarce-server.vercel.app/product/product-category/${params.slug}`)
             setProducts(data.products)
             setCategories(data.category)
         }

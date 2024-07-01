@@ -28,7 +28,7 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
    //getting categories:- 
  const getAllCategories = async () => {
     try {
-        const { data } = await axios.get("http://localhost:8000/category/get-categories")
+        const { data } = await axios.get("https://updateecommarce-server.vercel.app/category/get-categories")
         if (data?.success) {
             setCategories(data?.categories)
         }
@@ -45,7 +45,7 @@ useEffect(() => {
 //get all featured categories
  const getAllFeaturedCategories = async () => {
     try {
-        const { data } = await axios.get("http://localhost:8000/featured-catagory/get-fetured-categories")
+        const { data } = await axios.get("https://updateecommarce-server.vercel.app/featured-catagory/get-fetured-categories")
         if (data?.success) {
             setFeaturedCategories(data?.fcategories)
         }
@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
 
     // console.log({ name, photo,  description, category,price })
     // console.log({productData})
-          const {data}=await axios.post('http://localhost:8000/product/create-product',productData)
+          const {data}=await axios.post('https://updateecommarce-server.vercel.app/product/create-product',productData)
 
             if(data?.success){
                 // navigate("/dashboard")

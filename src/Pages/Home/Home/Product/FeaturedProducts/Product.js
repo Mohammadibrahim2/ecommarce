@@ -22,7 +22,7 @@ const FeaturedProducts=()=>{
   console.log(orderedItems)
   const { refatch } = useQuery({
     queryKey: [''],
-    queryFn: () => fetch(`http://localhost:8000/product/get-product`)
+    queryFn: () => fetch(`https://updateecommarce-server.vercel.app/product/get-product`)
       .then(res => res.json())
       .then(data => {
         setItems(data?.products)
@@ -42,7 +42,7 @@ const handlefeatcat= async(slug)=>{
    try{
     setCategory(slug)
     setLoading(true)
-    const {data}=await axios.get(`http://localhost:8000/product/get-featured-products/${slug}`)
+    const {data}=await axios.get(`https://updateecommarce-server.vercel.app/product/get-featured-products/${slug}`)
     
     
     console.log(data)
@@ -72,7 +72,7 @@ const handlefeatcat= async(slug)=>{
             </div> 
 
 
-            <div className="grid lg:grid-cols-6 grid-cols-2 gap-2 py-4">
+            <div className="grid lg:grid-cols-5 grid-cols-2 gap-2 py-4">
            
                 {!loading?
                     items?.map(item=>

@@ -14,7 +14,7 @@ useEffect(()=>{
 
 const getProduct= async()=>{
  try{
-  const {data}=await axios(`http://localhost:8000/product/get-product`)
+  const {data}=await axios(`https://updateecommarce-server.vercel.app/product/get-product`)
   setProducts(data?.products)
   console.log(data?.products)
   
@@ -27,7 +27,7 @@ const getProduct= async()=>{
 const handleDelete=(id)=>{
 
 if (window.confirm(`Are you sure to delete this  product?`) == true) {
-fetch(`http://localhost:8000/product/delete-product/${id}`,{
+fetch(`https://updateecommarce-server.vercel.app/product/delete-product/${id}`,{
 method:"DELETE"
 })
 .then(res=>res.json())
@@ -75,7 +75,7 @@ toast.success(data?.message)
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={`http://localhost:8000/product/product-photo/${p?._id}`}
+                        <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${p?._id}`}
                         alt="Products Image" />
                       </div>
                     </div>

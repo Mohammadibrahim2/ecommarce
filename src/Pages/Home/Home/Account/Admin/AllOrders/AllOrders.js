@@ -14,7 +14,7 @@
 // },[])
 //     const getOrders= async()=>{
 //         try{
-//             const {data}= await axios.get("http://localhost:8000/order")
+//             const {data}= await axios.get("https://updateecommarce-server.vercel.app/order")
 //             setOrders(data)
 //         console.log(data)
 //         }
@@ -27,7 +27,7 @@
 //     //delete Odrers:
 //     const handleDeleteOrder=async(id)=>{
 //         console.log(id)
-//         const {deleteddata}= await axios.delete(`http://localhost:5000/order/:${id}`)
+//         const {deleteddata}= await axios.delete(`https://updateecommarce-server.vercel.app/order/:${id}`)
 //       if(deleteddata){
 //         toast.success("SuccessFully delete the odrer")
 //       }

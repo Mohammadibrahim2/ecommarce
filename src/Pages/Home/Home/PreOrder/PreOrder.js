@@ -34,7 +34,7 @@ const PreOrder = () => {
 
             console.log({ name, photo, adress, phone, email ,userName})
             // console.log({productData})
-            //   const {data}=await axios.post('http://localhost:8000/preOrder/create-preOrder',productData)
+            //   const {data}=await axios.post('https://updateecommarce-server.vercel.app/preOrder/create-preOrder',productData)
 
             //     if(data?.success){
             //         // navigate("/")

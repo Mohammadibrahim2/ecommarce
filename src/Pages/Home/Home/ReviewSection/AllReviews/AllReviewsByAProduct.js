@@ -18,7 +18,7 @@ const AllReviews = ({product}) => {
 
     const getProduct= async()=>{
        try{
-        const {data}=await axios(`http://localhost:8000/review/get-reviews/${product._id}`)
+        const {data}=await axios(`https://updateecommarce-server.vercel.app/review/get-reviews/${product._id}`)
         setReviews(data)
 console.log(data)
        }

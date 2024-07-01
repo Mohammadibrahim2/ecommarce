@@ -9,7 +9,7 @@ export  default function useCategory(){
     const  getcategories= async()=>{
          try{
 
-            const {data}= await axios.get('http://localhost:8000/category/get-categories')
+            const {data}= await axios.get('https://updateecommarce-server.vercel.app/category/get-categories')
             setCategories(data?.categories)
          }
          catch(error){

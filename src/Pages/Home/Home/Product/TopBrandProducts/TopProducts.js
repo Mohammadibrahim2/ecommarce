@@ -17,7 +17,7 @@ const TopBrandProducts = () => {
   const getFeaturedCategories = async () => {
     try {
 
-      const { data } = await axios.get('http://localhost:8000/featured-catagory/get-fetured-categories')
+      const { data } = await axios.get('https://updateecommarce-server.vercel.app/featured-catagory/get-fetured-categories')
        setFcat(data?.fcategories?.slice(3,4))
 
     }
@@ -43,7 +43,7 @@ const TopBrandProducts = () => {
   const getTopProducts = async () => {
    
     try{
-      const { data } = await axios.get(`http://localhost:8000/product/get-featured-products/${fCat[0]?.slug}`)
+      const { data } = await axios.get(`https://updateecommarce-server.vercel.app/product/get-featured-products/${fCat[0]?.slug}`)
     setItems(data?.products)
     setLoading(false)
     }
@@ -63,19 +63,21 @@ const TopBrandProducts = () => {
             >{fct.name.toUpperCase()}</h1>)}
       </div>
 
-      <div className="grid lg:grid-cols-6 grid-cols-2 gap-2 py-4">
+      <div className="grid lg:grid-cols-5 grid-cols-2 gap-2 py-4">
         {!loading ?
           items.map(item => <div class="card card-box  bg-white hover:shadow-2xl ">
-            <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{item?.price} % OFF</h2>
-            <figure class="px-10 pt-10"
+            <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md py"> Best Quality </h2>
+            <figure class="flex flex-row items-center pt-3 px-2"
              onClick={()=>navigate(`/product/${item._id}`)}>
-              <img src={`http://localhost:8000/product/product-photo/${item?._id}`} alt="Shoes" class="rounded-xl" />
+              <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${item?._id}`}
+               alt="Shoes" className="lg:w-[350px] w-full h-[200px] object-fill" />
             </figure>
             <div class="py-7 px-2 items-center text-center text-black">
               <h2 class=" text-sm font-semibold ">{item?.name}</h2>
               <div className="flex flex-row justify-around py-3">
-                <span>{item?.price}tk</span>
-                <del className="ml-2">{item.price}tk</del>
+                <span>Price : {item?.price} tk</span>
+                <span>Quantity: {item?.quantity/1000} Kg</span>
+              
               </div>
               <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
                 <button className="px-3  border border-orange-700 text-orange-500 rounded-md"

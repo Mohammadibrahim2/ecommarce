@@ -20,16 +20,17 @@ const SingleProduct=({item,setSelectedItems, orderedItems})=>{
       
 
       
-    <figure class="px-10 pt-10" 
+    <figure class="pt-4 lg:w-[250px] w-full h-[200px] px-2 " 
     onClick={()=>navigate(`/product/${item._id}`)}>
-       <img src={`http://localhost:8000/product/product-photo/${item?._id}`} alt="Shoes" className="w-full h-full" />
+       <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${item?._id}`} 
+       alt="Shoes" className="w-full h-full object-fill" />
     </figure>
   
     <div class="py-7 px-2 items-center text-center text-black">
       <h2 class=" text-sm font-semibold ">{item?.name}</h2>
       <div className="flex flex-row justify-around py-3">
-        <span>{item?.price}tk</span>
-        <span className="ml-2">{parseInt(item?.quantity/1000)}kg</span>
+        <span>Price:{item?.price}tk</span>
+        <span className="ml-2">Quantity:{parseInt(item?.quantity/1000)}kg</span>
       </div>
       {/* <h1>{item?.category?.name}</h1> */}
       <div class="font-semibold w-full" >

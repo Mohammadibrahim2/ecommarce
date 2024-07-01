@@ -19,13 +19,13 @@ const FilterAndSearchProduct = () => {
 const navigate=useNavigate()
 const {sub}=useContext(AuthContext)
 
-console.log(subId)
+
 
   //get category
   const getcategories = async () => {
     try {
 
-      const { data } = await axios.get('http://localhost:8000/category/get-categories')
+      const { data } = await axios.get('https://updateecommarce-server.vercel.app/category/get-categories')
       setCategories(data?.categories)
     }
     catch (error) {
@@ -43,14 +43,14 @@ console.log(subId)
     setsubId(id)
   }
   const handleFilter = (value, id,subId) => {
-    console.log(subId)
+   
     let all = [...checked]
     if (value) {
-      all.push(id)
+      all?.push(id)
 
     }
     else {
-      all = all.filter(c => c !== id)
+      all = all?.filter(c => c !== id)
     }
 
     setChecked(all)
@@ -62,7 +62,7 @@ console.log(subId)
 
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/product/get-product`)
+      const { data } = await axios.get(`https://updateecommarce-server.vercel.app/product/get-product`)
       setProducts(data?.products)
     }
     catch (error) {
@@ -83,7 +83,7 @@ console.log(subId)
   //get filtereed products
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("http://localhost:8000/product/product-filter", {checked, radio,subId})
+      const { data } = await axios.post("https://updateecommarce-server.vercel.app/product/product-filter", {checked, radio,subId})
       setProducts(data?.products)
     }
     catch (error) {
@@ -114,11 +114,11 @@ console.log(subId)
             <h1 className="text-xl font-semibold mb-2">Category</h1>
             <div className=" h-[1px] bg-orange-500"></div>
             <div className="category flex flex-col  my-4">
-              {
-                categories.map(category =>
+              {categories&&
+                categories?.map(category =>
                   <Checkbox key={category?._id}
                     className="mt-2 font-semibold"
-                    onChange={(e) => handleFilter(e.target.checked, category._id)
+                    onChange={(e) => handleFilter(e.target.checked, category?._id)
                     }>
                     {category?.name}
 
@@ -156,11 +156,11 @@ console.log(subId)
          
 
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-2 py-4">
-            {
-              products.map(item => <div class="card card-box  bg-white hover:shadow-2xl " key={products?._id}>
+            {products&&
+              products?.map(item => <div class="card card-box  bg-white hover:shadow-2xl " key={products?._id}>
                 <h2 className="upper bg-orange-600 text-white px-2 text-xs rounded-md">{5} % off</h2>
                 <figure class="px-10 pt-10" onClick={()=>navigate(`/product/${item._id}`)}>
-                <img src={`http://localhost:8000/product/product-photo/${item?._id}`} 
+                <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${item?._id}`} 
                     alt="Shoes" className="w-full h-full" />
                 </figure>
                 <div class="py-7 px-2 items-center text-center text-black">

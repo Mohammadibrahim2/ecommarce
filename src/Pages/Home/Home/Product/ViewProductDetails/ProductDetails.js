@@ -33,7 +33,7 @@ const handleIncrement = async (quantity) => {
       
         <figure class="px-10 pt-10" 
     onClick={()=>navigate(`/product/${product?._id}`)}>
-       <img src={`http://localhost:8000/product/product-photo/${product?._id}`} alt="Shoes" className="
+       <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${product?._id}`} alt="Shoes" className="
        lg:w-[350px] w-full  h-full" />
     </figure>
   

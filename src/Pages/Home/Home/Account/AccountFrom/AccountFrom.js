@@ -32,7 +32,7 @@ const handleSubmit=async(e)=>{
     try{
         console.log({firstName,lastName,password,phone,email})
      
-const {data}=await axios.put(`http://localhost:8000/user/update/${user?._id}`,
+const {data}=await axios.put(`https://updateecommarce-server.vercel.app/user/update/${user?._id}`,
 {
     firstName,
     lastName,

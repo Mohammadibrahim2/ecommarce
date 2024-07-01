@@ -10,7 +10,7 @@ const SingleCart = ({ product ,removeCartItem,handleIncrement,handleDecrement}) 
             <div className="flex flex-row justify-between px-3 items-center">
                 <div className="item flex flex-row justify-around w-1/2">
                     <div className="img-quantity flex flex-col justify-center items-center" >
-                    <img src={`http://localhost:8000/product/product-photo/${product?._id}`} 
+                    <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${product?._id}`} 
                     alt="Shoes" className="w-[150px] h-1/2 object-fill" />
                         <div className="text-black font-semibold flex flex-row my-2">
                             <button className="px-2 py border border-1 bg-zinc-100 text-2xl font-bold"

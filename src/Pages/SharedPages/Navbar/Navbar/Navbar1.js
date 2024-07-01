@@ -42,7 +42,7 @@ const Navbar1 = () => {
        
         try{
 
-            const {data} =await axios.get(`http://localhost:8000/product/search/${values?.keyword}`)
+            const {data} =await axios.get(`https://updateecommarce-server.vercel.app/product/search/${values?.keyword}`)
             setValues({...values,results:data})
             console.log(values)
             navigate('/search')
@@ -136,7 +136,7 @@ const Navbar1 = () => {
                 <div>
                     {/* <Link to="/"><img src={logo } className="lg:w-[90px] w-[100px]"/></Link> */}
                     <Link to="/" className="text-orange-600 text-2xl font-semibold flex flex-col justify-start"><span>FISHnFRY</span>
-                        <span className="text-sm">Unbeteable Quality</span></Link>
+                        <span className="text-sm text-white">Unbeatable Quality</span></Link>
 
                 </div>
 

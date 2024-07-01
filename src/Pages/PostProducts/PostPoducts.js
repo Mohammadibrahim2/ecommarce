@@ -19,7 +19,7 @@ import PostSingleProduct from "./SingleProduct";
     
       console.log(parsedData)
   
-      fetch('http://localhost:5000/product/many',{
+      fetch('https://updateecommarce-server.vercel.app/product/many',{
         method:'POST',
         headers: {
           'content-type': 'application/json'

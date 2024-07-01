@@ -64,7 +64,7 @@ const Cart = () => {
     const handlePayment = async (cart, user) => {
         try {
 
-            const { data } = await axios.post("http://localhost:8000/product/order", {
+            const { data } = await axios.post("https://updateecommarce-server.vercel.app/product/order", {
                 cart, user,wholePrice
             })
             console.log(data.url)

@@ -11,7 +11,7 @@ const Login=()=>{
  
     const handleLogin = (data) => {
         
-        fetch('http://localhost:8000/user/login', {
+        fetch('https://updateecommarce-server.vercel.app/user/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

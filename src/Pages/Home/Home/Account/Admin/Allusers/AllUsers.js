@@ -13,7 +13,7 @@ const AllUsers = () => {
 
   const { refetch } = useQuery({
     queryKey: [''],
-    queryFn: () => fetch(`http://localhost:8000/user`)
+    queryFn: () => fetch(`https://updateecommarce-server.vercel.app/user`)
       .then(res => res.json())
       .then(data => {
         setUsers(data)
@@ -27,7 +27,7 @@ const AllUsers = () => {
   const handleDelete = (id) => {
 
     if (window.confirm(`Are you sure to delete user?`) == true) {
-      fetch(`http://localhost:8000/user/${id}`, {
+      fetch(`https://updateecommarce-server.vercel.app/user/${id}`, {
         method: "DELETE"
       })
         .then(res => res.json())

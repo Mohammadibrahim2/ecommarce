@@ -20,7 +20,7 @@ const navigate=useNavigate()
   }, [user?._id])
   const getOrders = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/order/get-userOrder/${user?._id}`)
+      const { data } = await axios.get(`https://updateecommarce-server.vercel.app/order/get-userOrder/${user?._id}`)
       setOrders(data?.orders)
       console.log(data)
     }
@@ -34,7 +34,7 @@ const navigate=useNavigate()
   //delete Odrers:
   const handleDeleteOrder=async(id)=>{
       try{
-        const {data}= await axios.delete(`http://localhost:8000/order/delete-order/${id}`)
+        const {data}= await axios.delete(`https://updateecommarce-server.vercel.app/order/delete-order/${id}`)
         if(data?.success){
           toast.success(data?.message)
          if(data?.success){
@@ -105,7 +105,7 @@ const navigate=useNavigate()
                 
                   <td className="h-10">
                     <div className="mask mask-squircle w-32 h-32 ">
-                      <img src={`http://localhost:8000/product/product-photo/${p?._id}`}
+                      <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${p?._id}`}
                         alt="Products Image"  className="w-full h-full "/>
                     </div>
                   </td>

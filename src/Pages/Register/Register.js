@@ -13,7 +13,7 @@ const Register = () => {
 
     const handleSinup = (data) => {
         
-        fetch('http://localhost:8000/user/register', {
+        fetch('https://updateecommarce-server.vercel.app/user/register', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
