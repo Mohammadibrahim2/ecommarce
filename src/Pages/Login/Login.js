@@ -58,8 +58,8 @@ const Login=()=>{
 
    
     return(
-        <div>
-            <div>
+        <div className="w-full">
+            <div className="w-full ">
             <form className="p-5 w-full lg:w-1/2 mx-auto border border-orange-500 rounded-md" onSubmit={handleSubmit(handleLogin)}>
                        
                                 <h1 className="text-orange-500 text-2xl mb-3 text-center font-semibold">LOG IN</h1>

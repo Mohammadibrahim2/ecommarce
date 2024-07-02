@@ -119,6 +119,11 @@ const Navbar1 = () => {
             <Link to="/register"> <span className="mr-2 text-orange-500"
              style={{ fontSize: "25px" }}><BiUser /></span>
             </Link>
+            <Link to="/register">
+            <h1>Account</h1>
+            <h1 >Login</h1>
+            </Link>
+           
 
             </>
 

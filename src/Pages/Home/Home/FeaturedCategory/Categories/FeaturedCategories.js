@@ -33,8 +33,8 @@ const FeatruedCategories=()=>{
             img:"https://t3.ftcdn.net/jpg/05/35/16/38/360_F_535163877_2hQD29bhkzCvpNvuDKyY3TjGYOBy95yT.jpg"
         },
         {
-            name:"Chicken",
-            img:"https://images.gmanews.tv/webpics/2015/08/chicken_rooster_hen_2015_08_12_19_26_29.jpg"
+            name:"Duck",
+            img:"https://i0.wp.com/www.flatheadaudubon.org/wp-content/uploads/2020/10/ducks-mallard-water-bird-duck-bird-162316-1024x587.jpeg?resize=980%2C562&ssl=1"
         },
        
        

@@ -13,7 +13,7 @@ const Register = () => {
 
     const handleSinup = (data) => {
         
-        fetch('http://localhost:8000/user/register', {
+        fetch('https://updateecommarce-server.vercel.app/user/register', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -39,8 +39,8 @@ const Register = () => {
 
     }
     return (
-        <div>
-            <div>
+        <div className="w-full">
+            <div className="w-full">
                 <form className="p-10  lg:w-1/2 w-full h-auto mx-auto border border-orange-500 rounded-md" onSubmit={handleSubmit(handleSinup)}>
 
                      <h1 className="text-orange-500 text-2xl mb-3 text-center font-semibold">SIGN IN</h1>
