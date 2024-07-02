@@ -13,7 +13,7 @@ const Register = () => {
 
     const handleSinup = (data) => {
         
-        fetch('https://updateecommarce-server.vercel.app/user/register', {
+        fetch('http://localhost:8000/user/register', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -24,8 +24,8 @@ const Register = () => {
         .then(data =>{
             if(data){
                 console.log(data)
-                setUser(data)
-                toast.success('Successfully registered')
+                setUser(data?.registedUser)
+                toast.success(data?.message)
                 // setLoading(false)
                 setOpenModal(false)
                 // setCreatedUserEmail(email);
@@ -41,9 +41,9 @@ const Register = () => {
     return (
         <div>
             <div>
-                <form className="p-10  w-full h-auto" onSubmit={handleSubmit(handleSinup)}>
+                <form className="p-10  lg:w-1/2 w-full h-auto mx-auto border border-orange-500 rounded-md" onSubmit={handleSubmit(handleSinup)}>
 
-
+                     <h1 className="text-orange-500 text-2xl mb-3 text-center font-semibold">SIGN IN</h1>
                     <div className="form-control">
 
                         <label className="label">
@@ -88,23 +88,22 @@ const Register = () => {
 
                     </div>
 
-                    <select {...register("isAdmin", { required: true })} className="border-black py-2 px-3 bg-white text-black border w-full mt-3">
-                      
-                        <option value="true" className="border-black py-2 px-3 bg-white text-black border">yes</option>
-                        <option value="false"  className="border-black py-2 px-3 bg-white text-black border">no</option>
-                    </select>
+                  
 
 
 
                     <div className="form-control mt-6">
                         <button  className=" py-2 px-3  text-white font-semibold bg-orange-500">CREATE ACCOUNT</button>
                     </div>
-
+                    <h1
+                    className="my-4">Allready Have an Account ?  Please 
+                    <Link to="/login" className="text-orange-500 font-semibold ml-3 ">Login</Link></h1>
                     <label className="label">
                         <h1 className=" my-2 text-center w-full text-slate-400 font-semibold " style={{ fontSize: "12px" }}>By creating an account, you agree to the ajmalshop.com
                             <span className="text-black "> Privacy Policy</span >  and <span className="text-black ">Delivery Terms & Conditions</span></h1>
 
                     </label>
+                  
                 </form>
             </div>
 

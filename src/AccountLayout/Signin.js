@@ -7,7 +7,7 @@ import { FiX } from "react-icons/fi";
 import { AuthContext } from "../Context/AuthProvider/AuthProvider";
 
 
-const PostData=()=>{
+const Signin=()=>{
 
  const [toggle,setToggle]=useState(true)
  const{ openModal,setOpenModal}=useContext(AuthContext)
@@ -51,4 +51,4 @@ const PostData=()=>{
         </>
     )
 }
-export default PostData
+export default Signin

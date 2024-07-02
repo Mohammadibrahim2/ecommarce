@@ -4,7 +4,7 @@ import Footer from "../../Pages/SharedPages/Footer/Footer/Footer";
 import Navbar1 from "../../Pages/SharedPages/Navbar/Navbar/Navbar1";
 import SubNav from "../../Pages/SharedPages/Navbar/Subnav/SubNav";
 import ResponsiveNav from "../../Pages/SharedPages/Navbar/Navbar/ResponsiveNav/ResponsiveNav";
-import PostData from "../../AccountLayout/PostData";
+import PostData from "../../AccountLayout/Signin";
 
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 

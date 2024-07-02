@@ -1,9 +1,10 @@
 import React, { useContext, useState ,useEffect} from "react";
-import { useForm } from "react-hook-form";
+
 import { Link, useNavigate } from "react-router-dom";
-import { RiLoginBoxFill } from "react-icons/ri"
+import { RiMapPinUserFill } from "react-icons/ri"
 import axios from "axios";
-import toast from "react-hot-toast";
+
+
 const AllReviews = ({product}) => {
 
     const [reviews,  setReviews] = useState('')
@@ -36,19 +37,19 @@ console.log(data)
                
             </div>
 
-            <div className="card">
-                <div className="hero ">
+            <div className="">
+                <div className=" ">
 {/* all reviews */}
 {reviews &&
                  reviews?.map(p=><>
-                  <div class="card card-box  bg-white  ">
+                  <div class=" bg-white  lg:w-1/3 w-full mx-auto my-2 ">
       
       
 
     <div class="py-7 px-2 items-center text-center text-black py-5 px-4 border border-orange-500">
     <div className="avatar placeholder">
-  <div className="bg-neutral text-neutral-content w-24 rounded-full">
-    <span className="text-3xl">{p?.user?.firstName.substring(1) }</span>
+  <div className="bg-orange-500 text-white  text-neutral-content w-16 rounded-full">
+    <span className="text-3xl"><RiMapPinUserFill /></span>
   </div>
 </div>
     <h2 class=" text-sm font-semibold ">User: {p?.user?.firstName}</h2>

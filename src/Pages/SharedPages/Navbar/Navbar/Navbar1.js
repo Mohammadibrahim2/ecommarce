@@ -108,16 +108,19 @@ const Navbar1 = () => {
                 </div>
             </li>
         </Link> :
-
-            <li className="flex flex-row justify-center items-center mr-8 cursor-pointer" htmlFor="registerModal">
+<>
+             {/* <li className="flex flex-row justify-center items-center mr-8 cursor-pointer" htmlFor="registerModal">
                 <label htmlFor="registerModal" className="mr-2" style={{ fontSize: "25px" }}><BiUser /></label>
-                <div className="text-white flex flex-col items-start" style={{ fontSize: "13px" }}>
+                 <div className="text-white flex flex-col items-start" style={{ fontSize: "13px" }}>
                     <label htmlFor="registerModal">Account</label >
-                    <label htmlFor="registerModal">Register or Login</label >
-                </div>
-            </li>,
+                     <label htmlFor="registerModal">Register or Login</label >
+                 </div>
+             </li> */}
+            <Link to="/register"> <span className="mr-2 text-orange-500"
+             style={{ fontSize: "25px" }}><BiUser /></span>
+            </Link>
 
-
+            </>
 
     ]
     return (
