@@ -66,6 +66,7 @@ const handleDelete=async(id)=>{
         <th>Adress</th>
         <th>Phone</th>
         <th>Email</th>
+        <th>Order time</th>
         <th>Update</th>
         <th>Delete</th>
         
