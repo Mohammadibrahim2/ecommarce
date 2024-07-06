@@ -68,7 +68,7 @@ const  ViewSingleProduct=()=>{
       <div className="flex flex-col justify-center items-center py-3">
         <span> Price:{p?.price}tk</span>
         <span
-        className="my-2">Weight:{p?.quantity}Kg</span>
+        className="my-2">Weight:{p?.quantity/1000}Kg</span>
       
       </div>
       <div class=" flex flex-row-reverse justify-center font-semibold w-full" >
