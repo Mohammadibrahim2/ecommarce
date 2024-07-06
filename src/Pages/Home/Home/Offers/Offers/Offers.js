@@ -1,32 +1,33 @@
 import React from "react";
 import SingleOffer from "./SingleOffers";
-
+import offer1 from "../../../../../assetes/offer.jpg"
+import offer2 from "../../../../../assetes/offer1 (1).jpg"
 const Offers = () => {
 
     const offers=[
         {
             id:1,
-            img:"https://adminapi.applegadgetsbd.com/storage/media/large/iPhone---iPhone-14-Pro-Max-3211.png"
+            img:offer2
         },
         {
             id:2,
-            img:"https://adminapi.applegadgetsbd.com/storage/media/large/MacBook---MacBook-Air-M1-4526.png"
+            img:offer1
         },
         {
             id:3,
-            img:"https://adminapi.applegadgetsbd.com/storage/media/large/iPad---iPad-9th-Gen-3139.png"
+            img:offer2
         },
         {
             id:4,
-            img:"https://adminapi.applegadgetsbd.com/storage/media/large/iPhone---iPhone-14-Pro-Max-3211.png"
+            img:offer1
         },
         {
             id:5,
-            img:"https://adminapi.applegadgetsbd.com/storage/media/large/MacBook---MacBook-Air-M1-4526.png"
+            img:offer1
         },
         {
             id:6,
-            img:"https://adminapi.applegadgetsbd.com/storage/media/large/iPad---iPad-9th-Gen-3139.png"
+            img:offer2
         },
 
     ]

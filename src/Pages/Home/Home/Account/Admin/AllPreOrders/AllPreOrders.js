@@ -7,22 +7,22 @@ import { MdDeleteSweep} from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../../../Context/AuthProvider/AuthProvider";
 
-const AllProducts=()=>{
-const [allProducts,setProducts]=useState([])
+const AllPreOrders=()=>{
+const [allPreOrders,setPreOrders]=useState([])
 const {user,setUser,token}=useContext(AuthContext)
 useEffect(()=>{
-   getProduct()
+   getPreOrder()
 },[])
 
-const getProduct= async()=>{
+const getPreOrder= async()=>{
  try{
-  const {data}=await axios.get(`http://localhost:8000/product/admin/get-product`,{
+  const {data}=await axios.get(`http://localhost:8000/preorder/admin/get-preorder`,{
     headers:{
       authorization: 'Bearer ' + token
     }
   })
-  setProducts(data?.products)
-  console.log(data?.products)
+  setPreOrders(data?.preorders)
+ 
   
  }
  catch(error){
@@ -33,12 +33,12 @@ const getProduct= async()=>{
 const handleDelete=async(id)=>{
 
   if (window.confirm(`Are you sure to delete this  product?`) == true) {
-  const {data}=await axios.delete(`http://localhost:8000/product/delete-product/${id}`,{
+  const {data}=await axios.delete(`http://localhost:8000/pre/delete-preorder/${id}`,{
     headers:{
       authorization: 'Bearer ' + token
   }
   })
-  getProduct()
+  getPreOrder()
   toast.success(data?.message)
   
  
@@ -52,6 +52,7 @@ const handleDelete=async(id)=>{
 // }
     return(
         <div className="">
+            <h1>All PreOrders</h1>
   <table className="table border">
     {/* head */}
     <thead className="border border-1">
@@ -60,9 +61,10 @@ const handleDelete=async(id)=>{
     
         <th>Image</th>
         <th>Product Name</th>
-        <th>Category</th>
-        <th>Brand</th>
-        <th>Price</th>
+        <th>UserName</th>
+        <th>Adress</th>
+        <th>Phone</th>
+        <th>Email</th>
         <th>Update</th>
         <th>Delete</th>
         
@@ -72,15 +74,15 @@ const handleDelete=async(id)=>{
     <tbody className="text-black font-semibold">
       {/* row */}
    
-        { allProducts&&
-           allProducts.map(p=> <tr key={p._id}>
+        { allPreOrders&&
+           allPreOrders.map(p=> <tr key={p._id}>
                 
                 <td> 
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${p?._id}`}
-                        alt="Products Image" />
+                        <img src={`http://localhost:8000/preorder/preorder-photo/${p?._id}`}
+                        alt="Preorder Image" />
                       </div>
                     </div>
                    
@@ -94,11 +96,14 @@ const handleDelete=async(id)=>{
                
                 </td>
                 <td>
-                    {p?.category?.name}
+                    {p?.userName}
                 </td>
-                <td>{p?.brand}</td>
+                <td>{p?.adress}</td>
                 <td>
-                    {p?.price} kr
+                    {p?.phone} 
+                </td>
+                <td>
+                    {p?.email} 
                 </td>
                 <td>
                  <Link to={`update/`}> 
@@ -122,4 +127,4 @@ const handleDelete=async(id)=>{
 </div>
     )
 }
-export default AllProducts
+export default AllPreOrders

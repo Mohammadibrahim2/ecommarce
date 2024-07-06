@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,18 +7,23 @@ import toast from "react-hot-toast";
 
 const CreateCategory = () => {
 
-    const { toggle, setToggle, user, setUser, loading, setLoading } = useContext(AuthContext)
+    const { toggle, setToggle, user, setUser, loading, setLoading,token} = useContext(AuthContext)
     const [isModalOpen, setIsModalOpen] = useState(false);
-    
+  
+
+
     const [name,setName]=useState('')
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
         
         try {
-
+console.log(token)
             console.log(name)
-            const { data } = await axios.post('https://updateecommarce-server.vercel.app/category/create-category',{name})
+            const { data } = await axios.post('http://localhost:8000/category/create-category',{name},{
+                headers: {
+                    authorization: 'Bearer ' + token
+                }})
 
             if (data?.success) {
                

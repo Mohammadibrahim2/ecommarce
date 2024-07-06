@@ -7,10 +7,9 @@ import TopBrandProducts from "./Product/TopBrandProducts/TopProducts";
 import ShopByBrands from "./ShopByBrands/ShopByBrands";
 import FeatruedCategories from "./FeaturedCategory/Categories/FeaturedCategories";
 import Blog from "../../../Blog/Blog";
-import PostData from "../../../AccountLayout/Signin";
-import CreateReview from "./ReviewSection/CreateReview";
-import OpenMobileModal from "../../SharedPages/Navbar/Navbar/SearchModal/MobileViewModel";
-import ScrollToTop from "react-scroll-to-top";
+
+
+
 import Service from "./Service/Service";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 
@@ -20,16 +19,13 @@ const Home = () => {
         <div className="text-oranger-500">
 
             <Header></Header>
-            <ScrollToTop smooth top="90" color="#FFFFFF"
-                style={{ backgroundColor: "#FF5A01", padding: "5px", fontWeight: "700" }}>
-
-            </ScrollToTop>
+           
             <MessengerCustomerChat
                 pageId="314721621727244"
                 appId="359335093589040"
-                htmlRef="<REF_STRING>"
+             
             />,
-            <PostData></PostData>
+      
 
             <FeatruedCategories />
 

@@ -66,30 +66,25 @@ const ResponsiveNav = () => {
 
 
         user?.email ? <Link to="/dashboard">
-            <li className="list none">
-                <span className="mr-2" style={{ fontSize: "20px" }}><BiUser /></span>
-                <div className="text-white flex flex-col items-center" style={{ fontSize: "13px" }}>
-                    <h1>{user?.firstName} {user?.lastName}</h1>
-                    <h1 onClick={handleLogout}>Logout</h1>
-                </div>
+            <li className="list-none flex flex-col justify-center items-center ">
+                <span className=" font-semibold" style={{ fontSize: "21px" }}><BiUser /></span>
+                <span className="text-white flex flex-col justify-center items-center"
+                 style={{ fontSize: "13px" }}>
+                    <span>{user?.firstName} {user?.lastName}</span>
+                    <span onClick={handleLogout}>Logout</span>
+                </span>
             </li>
         </Link> :
             <>
-                {/* <li className="flex flex-row justify-center items-center mr-8 cursor-pointer" htmlFor="registerModal">
-                <label htmlFor="registerModal" className="mr-2" style={{ fontSize: "25px" }}><BiUser /></label>
-                 <div className="text-white flex flex-col items-start" style={{ fontSize: "13px" }}>
-                    <label htmlFor="registerModal">Account</label >
-                     <label htmlFor="registerModal">Register or Login</label >
-                 </div>
-             </li> */}
+             
 
                 <li className="text-white list-none   " >
-                    <Link to="/register">
+                    <Link to="/login">
                      <span className=" text-orange-500"
                         style={{ fontSize: "20px" }}><BiUser /></span>
                     </Link>
                     
-                   <Link to="register"> <span className="">Sign in</span></Link>
+                   <Link to="/login"> <span className="">Log in</span></Link>
                    
                 </li>
 

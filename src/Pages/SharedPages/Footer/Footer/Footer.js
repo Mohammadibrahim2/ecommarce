@@ -73,8 +73,13 @@ const Footer = () => {
 
             </div>
 
-            <div className="flex lg:flex-row flex-col justify-between w-full lg:items-end items-start py-5 px-5 bg-zinc-800 mb-16 lg:mb-0">
-                <h2 className="lg:mb-0 mb-2">copyrigth by <span className=" text-orange-600 " > FISHnFRY</span> , 2024</h2>
+            <div className="flex lg:flex-row flex-col justify-between w-full lg:items-end 
+            items-start py-5 px-5 bg-zinc-800 mb-16 lg:mb-0">
+                <div className="flex flex-col ">
+                <h2 className="lg:mb-0 mb-2">©copyrigth by <span className=" text-orange-600 " > FISHnFRY</span> , 2024</h2>
+                <h2 className="">Made By <span className=" text-orange-600 " > Omar</span> </h2>
+                </div>
+                
                 <div className="flex flex-row lg:w-1/3 w-full ">
                     <img src={bkash} className="w-[80px] h-[30px] bg-white p-1 "></img>
                     <img src={nagad} className="w-[80px]  h-[30px] mx-3"></img>

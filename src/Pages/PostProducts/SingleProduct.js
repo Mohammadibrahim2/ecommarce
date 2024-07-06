@@ -10,7 +10,7 @@ import { Option } from "antd/es/mentions";
 import { Select } from "antd";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
  const PostSingleProduct=()=>{
-    const {user,setUser}=useContext(AuthContext)
+    const {user,setUser,token}=useContext(AuthContext)
     const [data,setData]=useState( )
 
     const [categories, setCategories] = useState([])
@@ -81,7 +81,11 @@ const handleSubmit = async (e) => {
 
     // console.log({ name, photo,  description, category,price })
     // console.log({productData})
-          const {data}=await axios.post('https://updateecommarce-server.vercel.app/product/create-product',productData)
+          const {data}=await axios.post('http://localhost:8000/product/create-product',productData,{
+            headers:{
+                authorization: 'Bearer ' + token
+            }
+          })
 
             if(data?.success){
                 // navigate("/dashboard")

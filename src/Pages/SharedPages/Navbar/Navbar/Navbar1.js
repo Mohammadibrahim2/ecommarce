@@ -11,7 +11,7 @@ import { HiOutlineX } from "react-icons/hi";
 import { FaBars } from 'react-icons/fa'
 
 import { Link, useNavigate } from "react-router-dom";
-// import logo from "../../../../assetes/logo-2.png"
+import logo from "../../../../assetes/palastine.gif"
 
 import "./Navbar.css"
 import axios from 'axios';
@@ -99,7 +99,7 @@ const Navbar1 = () => {
 
 
 
-        user?.email ? <Link to="/dashboard">
+        user?._id ? <Link to="/dashboard">
             <li className="flex flex-row justify-center items-center mr-8">
                 <span className="mr-2" style={{ fontSize: "25px" }}><BiUser /></span>
                 <div className="text-white flex flex-col items-start" style={{ fontSize: "13px" }}>
@@ -109,17 +109,11 @@ const Navbar1 = () => {
             </li>
         </Link> :
 <>
-             {/* <li className="flex flex-row justify-center items-center mr-8 cursor-pointer" htmlFor="registerModal">
-                <label htmlFor="registerModal" className="mr-2" style={{ fontSize: "25px" }}><BiUser /></label>
-                 <div className="text-white flex flex-col items-start" style={{ fontSize: "13px" }}>
-                    <label htmlFor="registerModal">Account</label >
-                     <label htmlFor="registerModal">Register or Login</label >
-                 </div>
-             </li> */}
-            <Link to="/register"> <span className="mr-2 text-orange-500"
+        
+            <Link to="/login"> <span className="mr-2 text-orange-500"
              style={{ fontSize: "25px" }}><BiUser /></span>
             </Link>
-            <Link to="/register">
+            <Link to="/login" className=" text-white">
             <h1>Account</h1>
             <h1 >Login</h1>
             </Link>
@@ -141,11 +135,16 @@ const Navbar1 = () => {
                 </div>
 
 
-                <div>
-                    {/* <Link to="/"><img src={logo } className="lg:w-[90px] w-[100px]"/></Link> */}
+                <div className="flex flex-row">
+                    <>
+                    <img src={logo } className="lg:w-[70px] w-[100px] h-[50px]"/>
+                    </>
+                
+                  <>
                     <Link to="/" className="text-orange-600 text-2xl font-semibold flex flex-col justify-start"><span>FISHnFRY</span>
                         <span className="text-sm text-white">Unbeatable Quality</span></Link>
-
+                        </>
+                      
                 </div>
 
                 <form className="parent lg:block hidden w-[340px]" onSubmit={handelSearch}>

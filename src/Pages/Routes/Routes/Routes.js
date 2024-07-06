@@ -10,8 +10,6 @@ import AccountFrom from "../../Home/Home/Account/AccountFrom/AccountFrom";
 import Address from "../../Home/Home/Account/Address/Address";
 import ChangePassword from "../../Home/Home/Account/ChaangePassword/ChangePassword";
 
-
-import PostData from "../../../AccountLayout/Signin";
 import PostProduct from "../../PostProducts/PostPoducts";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import Search from "../../SearchResult/Search";
@@ -27,6 +25,11 @@ import CreateCategory from "../../Home/Home/CreateCategory/CreateCategory";
 import Contact from "../../Home/Home/Contact/ContactUs";
 import Login from "../../Login/Login";
 import Register from "../../Register/Register";
+import ErrorPage from "../../ErrorPage/ErrorPage";
+import AllCategories from "../../Home/Home/Account/Admin/AllCategories/AllCategories";
+import AllReviews from "../../Home/Home/Account/Admin/AllReviews/AllReviews";
+import AllPreOrders from "../../Home/Home/Account/Admin/AllPreOrders/AllPreOrders";
+
 // import AllOrders from "../../Home/Home/Account/Admin/AllOrders/AllOrders";
 
 
@@ -91,6 +94,11 @@ export const router=createBrowserRouter([
                 element:<ViewSingleProduct></ViewSingleProduct>
 
             },
+            {
+                path:"*",
+                element:<ErrorPage/>
+
+            },
 
         ]
 
@@ -121,27 +129,37 @@ export const router=createBrowserRouter([
             },
             {
                 path:"/dashboard/allproducts",
-                element:<AllProducts/>
+                element:<AdminRoute><AllProducts/></AdminRoute>
 
             },
             {
                 path:"/dashboard/createproduct",
-                element:<PostProduct/>
+                element:<AdminRoute><PostProduct/></AdminRoute>
 
             },
-            // {
-            //     path:"/dashboard/allorders",
-            //     element:<AllOrders/>
+            {
+                path:"/dashboard/allcategories",
+                element:<AdminRoute><AllCategories/></AdminRoute>
 
-            // },
+            },
             {
                 path:"/dashboard/allusers",
-                element:<AllUsers/>
+                element:<AdminRoute><AllUsers/></AdminRoute>
+
+            },
+            {
+                path:"/dashboard/allreviews",
+                element:<AdminRoute><AllReviews/></AdminRoute>
 
             },
             {
                 path:"/dashboard/create-category",
-                element:<CreateCategory/>
+                element:<AdminRoute><CreateCategory/></AdminRoute>
+
+            },
+            {
+                path:"/dashboard/allpreorder",
+                element:<AdminRoute><AllPreOrders/></AdminRoute>
 
             },
 

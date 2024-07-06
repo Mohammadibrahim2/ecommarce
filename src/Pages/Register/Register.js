@@ -1,6 +1,6 @@
 import React from "react";
 import { FaUserAlt, FaArrowAltCircleRight } from "react-icons/fa"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Register = () => {
+    const navigate=useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm()
     const {setUser,signup , openModal,setOpenModal,setLoading}=useContext(AuthContext)
 
@@ -26,6 +27,7 @@ const Register = () => {
                 console.log(data)
                 setUser(data?.registedUser)
                 toast.success(data?.message)
+                navigate("/login")
                 // setLoading(false)
                 setOpenModal(false)
                 // setCreatedUserEmail(email);

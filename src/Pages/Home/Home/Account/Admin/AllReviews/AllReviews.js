@@ -7,22 +7,23 @@ import { MdDeleteSweep} from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../../../Context/AuthProvider/AuthProvider";
 
-const AllProducts=()=>{
-const [allProducts,setProducts]=useState([])
-const {user,setUser,token}=useContext(AuthContext)
+const  AllReviews=()=>{
+  const { token} = useContext(AuthContext)
+const [reviews,setReviews]=useState([])
 useEffect(()=>{
-   getProduct()
+  getReviews()
 },[])
 
-const getProduct= async()=>{
+const getReviews= async()=>{
  try{
-  const {data}=await axios.get(`http://localhost:8000/product/admin/get-product`,{
+  const {data}=await axios.get(`http://localhost:8000/review/get-reviews`,{
     headers:{
-      authorization: 'Bearer ' + token
+        authorization: 'Bearer ' + token
     }
   })
-  setProducts(data?.products)
-  console.log(data?.products)
+  setReviews(data?.review)
+  console.log(data?.review)
+ 
   
  }
  catch(error){
@@ -32,18 +33,21 @@ const getProduct= async()=>{
 
 const handleDelete=async(id)=>{
 
-  if (window.confirm(`Are you sure to delete this  product?`) == true) {
-  const {data}=await axios.delete(`http://localhost:8000/product/delete-product/${id}`,{
-    headers:{
-      authorization: 'Bearer ' + token
-  }
-  })
-  getProduct()
-  toast.success(data?.message)
-  
- 
-  }
-  }
+if (window.confirm(`Are you sure to delete this  review?`) == true) {
+const {data}=await axios.delete(`http://localhost:8000/review/delete-review/${id}`,{
+  headers:{
+    authorization: 'Bearer ' + token
+}
+})
+
+toast.success(data?.message)
+
+
+
+
+}
+
+}
  
 
 
@@ -52,18 +56,19 @@ const handleDelete=async(id)=>{
 // }
     return(
         <div className="">
+            <h1 className="text-xl text-orange-500 ">All Reviews</h1>
   <table className="table border">
     {/* head */}
     <thead className="border border-1">
       <tr className=" text-xl text-black">
      
     
-        <th>Image</th>
-        <th>Product Name</th>
-        <th>Category</th>
-        <th>Brand</th>
-        <th>Price</th>
-        <th>Update</th>
+        <th>Product</th>
+        <th>Iamge</th>
+        <th>User</th>
+        <th>Description</th>
+     
+        <th>Reviews</th>
         <th>Delete</th>
         
         
@@ -72,14 +77,14 @@ const handleDelete=async(id)=>{
     <tbody className="text-black font-semibold">
       {/* row */}
    
-        { allProducts&&
-           allProducts.map(p=> <tr key={p._id}>
+        {reviews&&
+          reviews.map(r=> <tr key={r._id}>
                 
                 <td> 
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${p?._id}`}
+                        <img src={`http://localhost:8000/product/product-photo/${r?.products?._id}`}
                         alt="Products Image" />
                       </div>
                     </div>
@@ -88,27 +93,25 @@ const handleDelete=async(id)=>{
                 </td>
                 <td>
                 
-                 <h1> {p?.name} </h1>
+                <h1> {r?.products?.name} </h1>
                
              
                
-                </td>
+                 </td>
                 <td>
-                    {p?.category?.name}
+                    {r?.user?.firstName}
                 </td>
-                <td>{p?.brand}</td>
+                <td>{r?.description}</td>
+              
                 <td>
-                    {p?.price} kr
-                </td>
-                <td>
-                 <Link to={`update/`}> 
+                 <Link to={`/update`}> 
                  <button className=" text-xl font-semibold"
                    style={{color:"green"}} ><RiEdit2Fill/></button></Link>
                 </td>
                 <td  > 
                   <button className=" text-xl font-semibold"
                     style={{color:"red"}}
-                    onClick={()=>handleDelete(p?._id)}
+                    onClick={()=>handleDelete(r?._id)}
                      ><MdDeleteSweep/></button>
                 </td>
               </tr>)
@@ -122,4 +125,4 @@ const handleDelete=async(id)=>{
 </div>
     )
 }
-export default AllProducts
+export default AllReviews

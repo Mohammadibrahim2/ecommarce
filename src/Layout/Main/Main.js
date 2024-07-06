@@ -3,8 +3,9 @@ import { Outlet } from "react-router-dom";
 import Footer from "../../Pages/SharedPages/Footer/Footer/Footer";
 import Navbar1 from "../../Pages/SharedPages/Navbar/Navbar/Navbar1";
 import SubNav from "../../Pages/SharedPages/Navbar/Subnav/SubNav";
-import ResponsiveNav from "../../Pages/SharedPages/Navbar/Navbar/ResponsiveNav/ResponsiveNav";
-import PostData from "../../AccountLayout/Signin";
+import ResponsiveNav from "../../Pages/SharedPages/Navbar/Navbar/ResponsiveNav/ResponsiveNav"
+
+
 
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
@@ -27,7 +28,7 @@ const Main = () => {
                         <div className="lg:px-8 px-3 ">
                             
                            
-                         <PostData></PostData>
+                  
                             
                          
 
@@ -43,10 +44,10 @@ const Main = () => {
          
 
 
-
+         <ResponsiveNav></ResponsiveNav>
             <Footer></Footer>
 
-            <ResponsiveNav></ResponsiveNav>
+          
 
         </div>
     )

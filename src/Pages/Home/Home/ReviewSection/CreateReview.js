@@ -7,7 +7,7 @@ import axios from "axios";
 import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 const CreateReview = ({product}) => {
-    const {toggle,setToggle,user,setUser,loading,setLoading}=useContext(AuthContext)
+    const {user,setUser,loading,setLoading,token}=useContext(AuthContext)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [description,  setDescription] = useState('')
     const [photo, setPhoto] = useState('')
@@ -27,15 +27,16 @@ const CreateReview = ({product}) => {
             productData.append("products", product?._id)
             productData.append("description",description)
           
-
-           
-        
-              const {data}=await axios.post('https://updateecommarce-server.vercel.app/review/create-review',productData)
+              const {data}=await axios.post('http://localhost:8000/review/create-review',productData,{
+                headers:{
+                    authorization: 'Bearer ' + token
+                }
+              })
 
                 if(data?.success){
                     // navigate("/")
                     toast.success(data?.message)
-                    console.log(data?.message)
+                   
 
                 }
                 else{
@@ -102,7 +103,7 @@ font-semibold hover:bg-orange-600 hover:text-zinc-800">
 <div className="text-center font-semibold text-xl border py-4">
    You Are Not Log in
      <li className="flex flex-row justify-center items-center  cursor-pointer" htmlFor="registerModal">
-    <label  htmlFor="registerModal" className="mr-2 py px-4 bg-orange-500 text-white my-2" style={{fontSize:"18px"}}>Log in</label>
+    <Link to="/login" className="mr-2 py px-4 bg-orange-500 text-white my-2" style={{fontSize:"18px"}}>Log in</Link>
    
        </li>
 </div></>}

@@ -7,7 +7,7 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Login=()=>{
     const { register, formState: { errors }, handleSubmit } = useForm()
-  const {setUser,signup , openModal,setOpenModal,setLoading}=useContext(AuthContext)
+  const {setUser,signup , openModal,setOpenModal,setLoading,token,setToken}=useContext(AuthContext)
  const navigate=useNavigate()
     const handleLogin = (data) => {
         console.log(data)
@@ -30,18 +30,29 @@ const Login=()=>{
                }
                
              if(data?.success){
-                localStorage.setItem("accesstoken",data?.token)
+                localStorage.setItem("accesstoken",JSON.stringify(data?.token))
                 localStorage.setItem("logineduser",JSON.stringify(data?.user))
                
                 let User= window.localStorage.getItem("logineduser");
+                let Token= window.localStorage.getItem("accesstoken");
                 navigate("/")
                 if(User){
-                    console.log(JSON.parse(User))
+                    // console.log(JSON.parse(User))
                     setUser(JSON.parse(User))
                     setLoading(false)
                     
                  
                 }
+                if(Token){
+                    
+                    setToken(JSON.parse(Token))
+                    setLoading(false)
+                    
+                 
+                }
+                
+                    
+            
                
              }
                 

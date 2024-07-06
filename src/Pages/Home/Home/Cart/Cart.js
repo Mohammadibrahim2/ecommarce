@@ -191,7 +191,7 @@ const Cart = () => {
                             </div></> :
                         <div>  <li className="flex flex-row justify-center items-center  cursor-pointer" htmlFor="registerModal" />
                             Please
-                            <label htmlFor="registerModal" className="mr-2 text-black my-2" >    log in</label>
+                            <Link to="/login" className="mr-2 text-black my-2" >    log in</Link>
                             to checkout
 
                         </div>

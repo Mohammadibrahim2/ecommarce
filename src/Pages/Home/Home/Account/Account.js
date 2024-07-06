@@ -11,13 +11,17 @@ import Navbar1 from "../../../SharedPages/Navbar/Navbar/Navbar1";
 import Footer from "../../../SharedPages/Footer/Footer/Footer";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../Context/AuthProvider/AuthProvider";
+import useAdmin from "../../../../hooks/useAdmin";
 
 
 
 const Account = () => {
     const [active, setActive] = useState("My Account")
     const { user, setUser } = useContext(AuthContext)
-    
+    const [isAdmin, isAdminLoading] = useAdmin(user?.email)
+
+
+
     const links = [
         {
             id: 1,
@@ -32,22 +36,79 @@ const Account = () => {
             link: "my-orders"
         },
         {
-            id: 3,
-            title: "Create Category",
-            icon: <BsKey />,
-            link: "create-category"
+            id: 2,
+            title: "My Pre-Orders",
+            icon: <BsCartCheck />,
+            link: "my-preorders"
+        },
+
+
+        {
+            id: 4,
+            title: "Address",
+            icon: <FaAddressCard />,
+            link: "address"
+        },
+
+
+    ]
+
+    const AdminLinks = [
+        {
+            id: 1,
+            title: "My Account",
+            icon: <CiUser />,
+            link: ""
+        },
+        {
+            id: 2,
+            title: "My Orders",
+            icon: <BsCartCheck />,
+            link: "my-orders"
+        },
+        {
+            id: 2,
+            title: "My Pre-Orders",
+            icon: <BsCartCheck />,
+            link: "my-preorders"
+        },
+
+
+        {
+            id: 4,
+            title: "Address",
+            icon: <FaAddressCard />,
+            link: "address"
+        },
+        {
+            id: 5,
+            title: "All Categories",
+            icon: <FaCartArrowDown />,
+            link: "allcategories"
+        },
+        {
+            id: 5,
+            title: "All Users",
+            icon: <FaUsers />,
+            link: "allusers"
+        },
+        {
+            id: 5,
+            title: "All Reviews",
+            icon: <FaUsers />,
+            link: "allreviews"
+        },
+        {
+            id: 5,
+            title: "All PreOrders",
+            icon: <FaUsers />,
+            link: "allpreorder"
         },
         {
             id: 9,
             title: "Create Featured Category",
             icon: <BsKey />,
             link: "create-featured-category"
-        },
-        {
-            id: 4,
-            title: "Address",
-            icon: <FaAddressCard />,
-            link: "address"
         },
         {
             id: 5,
@@ -68,40 +129,27 @@ const Account = () => {
             link: "allorders"
         },
         {
-            id: 5,
-            title: "All Users",
-            icon: <FaUsers />,
-            link: "allusers"
+            id: 3,
+            title: "Create Category",
+            icon: <BsKey />,
+            link: "create-category"
         },
-        {
-            id: 5,
-            title: "Logout",
 
-            icon: <HiArrowRightOnRectangle />
-        },
+
     ]
+    const handleLogout = () => {
 
-
-    const handleLogout = del => {
-
-        if (del) {
-            localStorage.removeItem("logineduser");
-            localStorage.removeItem("accesstoken");
-            setUser(null)
-            toast.success("successfully logout")
-        }
-
-
-
-
-
+        localStorage.removeItem("logineduser");
+        localStorage.removeItem("accesstoken");
+        setUser(null)
+        toast.success("successfully logout")
 
     }
     const header = [
         {
             id: 1,
             tittle: "Products",
-            count:89
+            count: 89
         }, {
             id: 1,
             tittle: "Orders",
@@ -109,7 +157,7 @@ const Account = () => {
         }, {
             id: 1,
             tittle: "Users",
-            count:565
+            count: 565
         }, {
             id: 1,
             tittle: "Profit",
@@ -121,17 +169,37 @@ const Account = () => {
         <div>
 
             <div className="grid lg:grid-cols-4 grid-cols-1  py-2 px-5">
+                <>
+                {
+                    isAdmin ? <div className="mt-8  text-black ">
+                        {
+                            AdminLinks.map(link =>
+                                <Link to={link.link}><li  className={` ${active === link.title ? "text-orange-500" : "text-black"} hover:text-orange-600 list-none flex flex-row items-center mb-3 text-black`}>
+                                    <span className="mr-2">{link.icon}</span>
+                                    <button onClick={() => setActive(link.title)}>{link.title}</button></li></Link>)
+                        }
+                        
+                    </div> 
+                    :
+                     <div className="mt-8  text-black">
+                        {
+                            links.map(link =>
+                                <Link to={link.link}><li className={` ${active === link.title ? "text-orange-500" : "text-black"} hover:text-orange-600 list-none flex flex-row items-center mb-3 text-black`}>
+                                    <span className="mr-2">{link.icon}</span>
+                                    <button onClick={() => setActive(link.title)}>{link.title}</button></li></Link>)
+                        }
+                        
+                    </div>
+                }
+               
+                            </>
 
-                <div className="mt-8  text-black">
-                    {
-                        links.map(link =>
-                            <Link to={link.link}><li onClick={() => handleLogout(link?.delete)} className={` ${active === link.title ? "text-orange-500" : "text-black"} hover:text-orange-600 list-none flex flex-row items-center mb-3 text-black`}>
-                                <span className="mr-2">{link.icon}</span>
-                                <button onClick={() => setActive(link.title)}>{link.title}</button></li></Link>)
-                    }
-                </div>
+                {/* adminlinks */}
+
+                {/* adminlinks */}
                 <div className="col-span-3
                     ">
+
                     <div className="grid grid-cols-4 gap-4 px-4 py-2">
                         {
                             header.map(h => <div key={h.id}>
@@ -139,7 +207,7 @@ const Account = () => {
                                     <div className="card-body">
                                         <h2 className="card-title">{h.tittle}</h2>
                                         <p>total: {h.count}</p>
-                                       
+
                                     </div>
                                 </div>
                             </div>)
@@ -148,9 +216,9 @@ const Account = () => {
 
 
                     {/* {user?._id && */}
-                        <div >
-                            <Outlet></Outlet>
-                        </div>
+                    <div >
+                        <Outlet></Outlet>
+                    </div>
                     {/* } */}
 
                 </div>

@@ -7,7 +7,7 @@ const useAdmin=email=>{
     console.log(isAdmin)
 
     useEffect(()=>{
-        fetch(`https://updateecommarce-server.vercel.app/user/admin/${email}`)
+        fetch(`http://localhost:8000/user/admin/${email}`)
         .then(data=>data.json())
         .then(data=>{
             console.log(data)

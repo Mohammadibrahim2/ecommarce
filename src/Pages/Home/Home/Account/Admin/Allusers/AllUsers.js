@@ -1,49 +1,67 @@
 import { useQuery } from "@tanstack/react-query";
 import { Avatar, Space } from "antd";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { UserOutlined } from '@ant-design/icons';
+import { AuthContext } from "../../../../../../Context/AuthProvider/AuthProvider";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([])
+  const { token} = useContext(AuthContext)
 
+useEffect(()=>{
+   getUsers()
+},[])
 
-
-  const { refetch } = useQuery({
-    queryKey: [''],
-    queryFn: () => fetch(`https://updateecommarce-server.vercel.app/user`)
-      .then(res => res.json())
-      .then(data => {
-        setUsers(data)
-        console.log(data)
-      })
-
-
-
+const  getUsers= async()=>{
+ try{
+  const {data}=await axios(`http://localhost:8000/user`,{
+    headers:{
+      authorization: 'Bearer ' + token
+  }
   })
+  setUsers(data)
+  
+ }
+ catch(error){
+  console.log(error)
+ }
+}
 
-  const handleDelete = (id) => {
+const handleDelete=async(id)=>{
 
-    if (window.confirm(`Are you sure to delete user?`) == true) {
-      fetch(`https://updateecommarce-server.vercel.app/user/${id}`, {
-        method: "DELETE"
+  if (window.confirm(`Are you sure to delete this  user?`) == true) {
+  const {data}=await axios.delete(`http://localhost:8000/user/${id}`,{
+    headers:{
+      authorization: 'Bearer ' + token
+  }
+  })
+  getUsers()
+  toast.success(data?.message)
+  
+ 
+  }
+  }
+  //make admin
+  const  handleMakeAdmin=async(id,name)=>{
+
+  try{
+    if (window.confirm(`Are you sure to delete this  ${name}?`) == true) {
+      const {data}=await axios.put(`http://localhost:8000/user/makeAdmin/${id}`,{
+        headers:{
+          authorization: 'Bearer ' + token
+      }
       })
-        .then(res => res.json())
-        .then(data => {
-          toast.success(data?.message)
-          refetch()
-        })
-
-
-    } else {
-      return
-    }
-
-
-
-
+      getUsers()
+      toast.success(data?.message)
+      
+     }
+  }
+  catch(err){
+    console.log(err)
+  }
   }
   return (
     <div className="">
@@ -58,8 +76,9 @@ const AllUsers = () => {
             <th>Email</th>
             <th>Phone</th>
             <th>Role</th>
-            <th>Update</th>
-            <th>Delete</th>
+         
+            <th>Make Admin</th>
+            <th>Remove User</th>
 
 
           </tr>
@@ -69,11 +88,7 @@ const AllUsers = () => {
 
           {
             users?.map(user => <tr key={user._id}>
-              {/* <th>
-                   <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label> 
-                </th> */}
+             
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
@@ -104,18 +119,20 @@ const AllUsers = () => {
               <td>
                 {
                   user.isAdmin === true ?
-                    <span className="bg-lime-500 px-2 py-2 text-white ">Admin</span> :
-                    <button className="bg-orange-500 px-2 py-2 ">user</button>
+                    <span className="text-lime-600 px-2 py-2 text-white font-bold ">Admin</span> :
+                    <button className="text-orange-500 px-2 py-2 font-bold">user</button>
                 }
 
               </td>
-              <td>
-                <Link to={`update/${user._id}`}>
-                  <button className="px-2 py-2 bg-red-500" >Update</button></Link>
+              <td  >
+                <button className="px-2 py-2 text-lime-600 text-white"
+                 onClick={() => handleMakeAdmin(user?._id,user?.firstName)}  >Make Admin </button>
               </td>
               <td  >
-                <button className="px-2 py-2 bg-red-500" onClick={() => handleDelete(user?._id)}  >Delete</button>
+                <button className="px-2 py-2 bg-red-600 text-white"
+                 onClick={() => handleDelete(user?._id)}  >Remove </button>
               </td>
+              
             </tr>)
           }
 
@@ -123,16 +140,8 @@ const AllUsers = () => {
           {/* row 2 */}
 
         </tbody>
-        {/* foot */}
-        {/* <tfoot>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      
-      </tr>
-    </tfoot> */}
+       
+   
 
       </table>
     </div>
