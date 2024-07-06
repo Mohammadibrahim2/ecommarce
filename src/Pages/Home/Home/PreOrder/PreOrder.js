@@ -35,7 +35,7 @@ const PreOrder = () => {
 
             console.log({ name, photo, adress, phone, email, userName })
             console.log({productData})
-              const {data}=await axios.post('http://localhost:8000/preorder/create-preorder',productData,{
+              const {data}=await axios.post('https://updateecommarce-server.vercel.app/preorder/create-preorder',productData,{
                 headers:{
                     authorization: 'Bearer ' + token
                 }

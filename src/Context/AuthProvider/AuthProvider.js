@@ -20,8 +20,7 @@ const AuthProvider=({children})=>{
     const[loading,setLoading]=useState(true)
     const [toggle,setToggle]=useState(true)
     const [sub,setSub]=useState([])
-    console.log(sub?.subcategory)
-   
+    
     const [searchResult,setSearchResult]=useState([])
    
   

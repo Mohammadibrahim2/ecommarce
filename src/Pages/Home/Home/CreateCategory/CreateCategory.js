@@ -20,7 +20,7 @@ const CreateCategory = () => {
         try {
 console.log(token)
             console.log(name)
-            const { data } = await axios.post('http://localhost:8000/category/create-category',{name},{
+            const { data } = await axios.post('https://updateecommarce-server.vercel.app/category/create-category',{name},{
                 headers: {
                     authorization: 'Bearer ' + token
                 }})

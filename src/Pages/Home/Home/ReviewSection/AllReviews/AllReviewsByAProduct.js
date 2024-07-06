@@ -9,10 +9,6 @@ const AllReviews = ({product}) => {
 
     const [reviews,  setReviews] = useState('')
 
-    
-
-  
-  
     useEffect(()=>{
         if(product?._id) getProduct()
     },[product?._id])

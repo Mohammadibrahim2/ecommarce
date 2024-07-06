@@ -17,7 +17,7 @@ useEffect(()=>{
 
 const  getUsers= async()=>{
  try{
-  const {data}=await axios(`http://localhost:8000/user`,{
+  const {data}=await axios(`https://updateecommarce-server.vercel.app/user`,{
     headers:{
       authorization: 'Bearer ' + token
   }
@@ -33,7 +33,7 @@ const  getUsers= async()=>{
 const handleDelete=async(id)=>{
 
   if (window.confirm(`Are you sure to delete this  user?`) == true) {
-  const {data}=await axios.delete(`http://localhost:8000/user/${id}`,{
+  const {data}=await axios.delete(`https://updateecommarce-server.vercel.app/user/${id}`,{
     headers:{
       authorization: 'Bearer ' + token
   }
@@ -49,7 +49,7 @@ const handleDelete=async(id)=>{
 
   try{
     if (window.confirm(`Are you sure to delete this  ${name}?`) == true) {
-      const {data}=await axios.put(`http://localhost:8000/user/makeAdmin/${id}`,{
+      const {data}=await axios.put(`https://updateecommarce-server.vercel.app/user/makeAdmin/${id}`,{
         headers:{
           authorization: 'Bearer ' + token
       }

@@ -16,7 +16,7 @@ useEffect(()=>{
 
 const getProduct= async()=>{
  try{
-  const {data}=await axios.get(`http://localhost:8000/product/admin/get-product`,{
+  const {data}=await axios.get(`https://updateecommarce-server.vercel.app/product/admin/get-product`,{
     headers:{
       authorization: 'Bearer ' + token
     }
@@ -33,7 +33,7 @@ const getProduct= async()=>{
 const handleDelete=async(id)=>{
 
   if (window.confirm(`Are you sure to delete this  product?`) == true) {
-  const {data}=await axios.delete(`http://localhost:8000/product/delete-product/${id}`,{
+  const {data}=await axios.delete(`https://updateecommarce-server.vercel.app/product/delete-product/${id}`,{
     headers:{
       authorization: 'Bearer ' + token
   }

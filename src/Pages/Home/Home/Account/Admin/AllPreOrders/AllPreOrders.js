@@ -6,6 +6,7 @@ import { MdDeleteSweep} from "react-icons/md";
 
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../../../../Context/AuthProvider/AuthProvider";
+import moment from "moment";
 
 const AllPreOrders=()=>{
 const [allPreOrders,setPreOrders]=useState([])
@@ -16,7 +17,7 @@ useEffect(()=>{
 
 const getPreOrder= async()=>{
  try{
-  const {data}=await axios.get(`http://localhost:8000/preorder/admin/get-preorder`,{
+  const {data}=await axios.get(`https://updateecommarce-server.vercel.app/preorder/admin/get-preorder`,{
     headers:{
       authorization: 'Bearer ' + token
     }
@@ -33,7 +34,7 @@ const getPreOrder= async()=>{
 const handleDelete=async(id)=>{
 
   if (window.confirm(`Are you sure to delete this  product?`) == true) {
-  const {data}=await axios.delete(`http://localhost:8000/pre/delete-preorder/${id}`,{
+  const {data}=await axios.delete(`https://updateecommarce-server.vercel.app/pre/delete-preorder/${id}`,{
     headers:{
       authorization: 'Bearer ' + token
   }
@@ -81,7 +82,7 @@ const handleDelete=async(id)=>{
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={`http://localhost:8000/preorder/preorder-photo/${p?._id}`}
+                        <img src={`https://updateecommarce-server.vercel.app/preorder/preorder-photo/${p?._id}`}
                         alt="Preorder Image" />
                       </div>
                     </div>
@@ -104,6 +105,9 @@ const handleDelete=async(id)=>{
                 </td>
                 <td>
                     {p?.email} 
+                </td>
+                <td>
+                {moment(p?.createdAt).fromNow()}
                 </td>
                 <td>
                  <Link to={`update/`}> 

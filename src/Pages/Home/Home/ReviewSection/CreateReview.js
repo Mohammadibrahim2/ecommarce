@@ -27,7 +27,7 @@ const CreateReview = ({product}) => {
             productData.append("products", product?._id)
             productData.append("description",description)
           
-              const {data}=await axios.post('http://localhost:8000/review/create-review',productData,{
+              const {data}=await axios.post('https://updateecommarce-server.vercel.app/review/create-review',productData,{
                 headers:{
                     authorization: 'Bearer ' + token
                 }

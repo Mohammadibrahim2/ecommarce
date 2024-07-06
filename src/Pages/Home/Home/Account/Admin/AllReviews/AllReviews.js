@@ -16,7 +16,7 @@ useEffect(()=>{
 
 const getReviews= async()=>{
  try{
-  const {data}=await axios.get(`http://localhost:8000/review/get-reviews`,{
+  const {data}=await axios.get(`https://updateecommarce-server.vercel.app/review/get-reviews`,{
     headers:{
         authorization: 'Bearer ' + token
     }
@@ -34,7 +34,7 @@ const getReviews= async()=>{
 const handleDelete=async(id)=>{
 
 if (window.confirm(`Are you sure to delete this  review?`) == true) {
-const {data}=await axios.delete(`http://localhost:8000/review/delete-review/${id}`,{
+const {data}=await axios.delete(`https://updateecommarce-server.vercel.app/review/delete-review/${id}`,{
   headers:{
     authorization: 'Bearer ' + token
 }
@@ -84,7 +84,7 @@ toast.success(data?.message)
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img src={`http://localhost:8000/product/product-photo/${r?.products?._id}`}
+                        <img src={`https://updateecommarce-server.vercel.app/product/product-photo/${r?.products?._id}`}
                         alt="Products Image" />
                       </div>
                     </div>

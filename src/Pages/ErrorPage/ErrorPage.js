@@ -11,8 +11,8 @@ const ErrorPage = () => {
     return (
         <div className="w-[full] h-[100vh] text-indego-950 font-semibold ">
            
-            <div className="w-[80%] mx-auto text-center py-5 text-2xl  text-indego-950 font-semibold">
-            <h1 className="text-indigo-950 text-5xl font-bold">404 ERROR!</h1>
+            <div className="w-[80%] mx-auto text-center py-5 text-2xl  text-orange-500 font-semibold">
+            <h1 className="text-orange-600 text-5xl font-bold">404 ERROR!</h1>
             <h2 >Oops! The page you are looking for does not exist.</h2>
             <Link to="/" className="text-blue-500">Go home</Link>
 

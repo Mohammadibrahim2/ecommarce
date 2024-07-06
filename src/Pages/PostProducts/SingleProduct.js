@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
 
     // console.log({ name, photo,  description, category,price })
     // console.log({productData})
-          const {data}=await axios.post('http://localhost:8000/product/create-product',productData,{
+          const {data}=await axios.post('https://updateecommarce-server.vercel.app/product/create-product',productData,{
             headers:{
                 authorization: 'Bearer ' + token
             }

@@ -16,7 +16,7 @@ useEffect(()=>{
 
 const  getCategory= async()=>{
  try{
-  const {data}=await axios.get(`http://localhost:8000/category/get-categories`)
+  const {data}=await axios.get(`https://updateecommarce-server.vercel.app/category/get-categories`)
   setProducts(data?.categories)
  
   
@@ -29,7 +29,7 @@ const  getCategory= async()=>{
 const handleDelete=async(id)=>{
 
 if (window.confirm(`Are you sure to delete this  Caetgory?`) == true) {
-const {data}=await axios.delete(`http://localhost:8000/category/delete-category/${id}`,{
+const {data}=await axios.delete(`https://updateecommarce-server.vercel.app/category/delete-category/${id}`,{
   headers:{
     authorization: 'Bearer ' + token
 }
