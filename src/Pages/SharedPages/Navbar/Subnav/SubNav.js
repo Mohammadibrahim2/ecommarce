@@ -85,7 +85,7 @@ const handlesubcat=(id)=>{
                         py-2 pr-2 border w-full">
 
 
-                            <Link to="/">
+                            <Link to="/filter">
                                 <SingleCategory item={item} handlesubcat={handlesubcat}></SingleCategory>
                                
                             </Link>

@@ -40,14 +40,16 @@ const authInfo={toggle,setToggle ,setUser,
         let User= window.localStorage.getItem("logineduser");
         let Token= window.localStorage.getItem("accesstoken");
         console.log(JSON.parse(User))
-        
-                    
-      setToken(JSON.parse(Token))
-
         setUser(JSON.parse(User))
     
         setLoading(false)
         setOpenModal(false)
+if(Token){
+    setToken(JSON.parse(Token))
+}
+     
+
+        
     },[])
     
 

@@ -169,8 +169,8 @@ const {sub}=useContext(AuthContext)
                   <h2 class=" text-sm font-semibold text-orange-500 ">{item?.subcategory?.name}</h2>
 
                   <div className="flex flex-row justify-around py-3">
-                    <span>{item?.price} kr</span>
-                    <del className="ml-2">{parseInt(item?.price) + 2000} kr</del>
+                    <span>{item?.price} tk</span>
+                 
                   </div>
                   <div class=" flex flex-row-reverse justify-around font-semibold w-full" >
 
