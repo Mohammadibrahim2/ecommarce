@@ -152,7 +152,7 @@ const Navbar1 = () => {
                         value={values.keyword}
                         onChange={(e) => setValues({ ...values, keyword: e.target.value })}
                         className="bg-white text-black  lg:pr-30 pl-2  py-2 rounded-md w-[350px]  "
-                        placeholder=" Search"></input>
+                        placeholder=" Search "></input>
 
 
 

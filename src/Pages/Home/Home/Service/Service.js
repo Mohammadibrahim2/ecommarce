@@ -11,12 +11,12 @@ const Service = () => {
             id: 1,
             icon: <ImTruck/>,
             text: "FREE DELIVERY",
-            subtext: "When ordering from $500."
+            subtext: "When ordering from 5000."
         },
         {
             id: 2,
             icon: <FaMoneyCheck/>,
-            text: "90 DAYS RETURN",
+            text: "1 DAYS RETURN",
             subtext: "If goods have problems"
         },
       
